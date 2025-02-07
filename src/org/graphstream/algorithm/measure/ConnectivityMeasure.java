@@ -287,15 +287,15 @@ public class ConnectivityMeasure {
 				});
 			}
 
-			for (int i = 0; i < visited.length; i++)
-				if (!visited[i]) {
-					Edge[] tuple = new Edge[k];
+            for (boolean b : visited)
+                if (!b) {
+                    Edge[] tuple = new Edge[k];
 
-					for (int j = 0; j < k; j++)
-						tuple[j] = g.getEdge(karray.get(j));
+                    for (int j = 0; j < k; j++)
+                        tuple[j] = g.getEdge(karray.get(j));
 
-					return tuple;
-				}
+                    return tuple;
+                }
 		} while (karray.next());
 
 		return null;

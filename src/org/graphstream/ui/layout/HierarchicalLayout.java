@@ -134,8 +134,7 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 		LinkedList<Node> roots = new LinkedList<>(), roots2 = new LinkedList<>();
 
 		if (!this.roots.isEmpty()) {
-			for (int i = 0; i < this.roots.size(); i++)
-				roots.add(internalGraph.getNode(this.roots.get(i)));
+            for (String root : this.roots) roots.add(internalGraph.getNode(root));
 		}
 
 		SpanningTree tree = new Prim("weight", "inTree");
@@ -210,8 +209,7 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 			}
 		}
 
-		for (int i = 0; i < levelBoxes.size(); i++)
-			levelBoxes.get(i).sort();
+        for (LevelBox levelBox : levelBoxes) levelBox.sort();
 
 		while (!boxes.isEmpty())
 			renderBox(boxes.extractMin());
@@ -605,17 +603,17 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 			width *= sx;
 			height *= sy;
 
-			for (int i = 0; i < size(); i++) {
-				get(i).setAttribute("x", sx * get(i).getNumber("x"));
-				get(i).setAttribute("y", sy * get(i).getNumber("y"));
-			}
+            for (Node edges : this) {
+                edges.setAttribute("x", sx * edges.getNumber("x"));
+                edges.setAttribute("y", sy * edges.getNumber("y"));
+            }
 		}
 
 		void translate(double dx, double dy) {
-			for (int i = 0; i < size(); i++) {
-				get(i).setAttribute("x", dx + get(i).getNumber("x"));
-				get(i).setAttribute("y", dy + get(i).getNumber("y"));
-			}
+            for (Node edges : this) {
+                edges.setAttribute("x", dx + edges.getNumber("x"));
+                edges.setAttribute("y", dy + edges.getNumber("y"));
+            }
 		}
 	}
 

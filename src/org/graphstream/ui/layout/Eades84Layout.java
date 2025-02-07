@@ -270,7 +270,7 @@ public class Eades84Layout extends PipeBase implements Layout {
 		//for (LayoutListener listener : listeners)
 		//	listener.nodeMoved((String) id, x, y, z);
 
-		Object xyz[] = new Object[3];
+		Object[] xyz = new Object[3];
 		xyz[0] = x;
 		xyz[1] = y;
 		xyz[2] = z;

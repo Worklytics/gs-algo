@@ -49,7 +49,7 @@ import org.junit.Test;
  * Test the APSP algorithm.
  */
 public class TestAPSP {
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		try {
 			TestAPSP t = new TestAPSP();
 			t.init(args);
@@ -63,7 +63,7 @@ public class TestAPSP {
 
 	}
 
-	public void init(String args[]) throws IOException, GraphParseException {
+	public void init(String[] args) throws IOException, GraphParseException {
 		String filename = null;
 
 		if (args.length > 0)
@@ -126,8 +126,8 @@ public class TestAPSP {
 
 		APSP.APSPInfo info = (APSPInfo) A.getAttribute(APSP.APSPInfo.ATTRIBUTE_NAME);
 		Path path = info.getShortestPathTo("E");
-		Object npath[] = path.getNodePath().toArray();
-		Object npath1[] = { A, B, C, D, E };
+		Object[] npath = path.getNodePath().toArray();
+		Object[] npath1 = { A, B, C, D, E };
 
 		assertEquals(5, path.getNodeCount(), 0);
 		assertArrayEquals(npath1, npath);
@@ -139,7 +139,7 @@ public class TestAPSP {
 
 		path = info.getShortestPathTo("C");
 		npath = path.getNodePath().toArray();
-		Object npath2[] = { A, B, C };
+		Object[] npath2 = { A, B, C };
 
 		assertEquals(3, path.getNodeCount(), 0);
 		assertArrayEquals(npath2, npath);
@@ -147,7 +147,7 @@ public class TestAPSP {
 		info = (APSPInfo) E.getAttribute(APSP.APSPInfo.ATTRIBUTE_NAME);
 		path = info.getShortestPathTo("C");
 		npath = path.getNodePath().toArray();
-		Object npath3[] = { E, D, B, C };
+		Object[] npath3 = { E, D, B, C };
 
 		assertEquals(4, path.getNodeCount(), 0);
 		assertArrayEquals(npath3, npath);
@@ -175,8 +175,8 @@ public class TestAPSP {
 
 		APSP.APSPInfo info = (APSPInfo) A.getAttribute(APSP.APSPInfo.ATTRIBUTE_NAME);
 		Path path = info.getShortestPathTo("C");
-		Object npath[] = path.getNodePath().toArray();
-		Object npath1[] = { A, D, C };
+		Object[] npath = path.getNodePath().toArray();
+		Object[] npath1 = { A, D, C };
 
 		assertEquals(3, path.getNodeCount(), 0);
 		assertArrayEquals(npath, npath1);
@@ -188,7 +188,7 @@ public class TestAPSP {
 		info = (APSPInfo) B.getAttribute(APSP.APSPInfo.ATTRIBUTE_NAME);
 		path = info.getShortestPathTo("C");
 		npath = path.getNodePath().toArray();
-		Object npath2[] = { B, A, D, C };
+		Object[] npath2 = { B, A, D, C };
 
 		assertEquals(4, path.getNodeCount(), 0);
 		assertArrayEquals(npath, npath2);
@@ -217,8 +217,8 @@ public class TestAPSP {
 
 		APSP.APSPInfo info = (APSPInfo) A.getAttribute(APSP.APSPInfo.ATTRIBUTE_NAME);
 		Path path = info.getShortestPathTo("B");
-		Object npath[] = path.getNodePath().toArray();
-		Object npath1[] = { A, D, B }; // ? Or A, D, E, B ? There are two paths.
+		Object[] npath = path.getNodePath().toArray();
+		Object[] npath1 = { A, D, B }; // ? Or A, D, E, B ? There are two paths.
 
 		assertEquals(3, path.getNodeCount(), 0);
 		assertArrayEquals(npath, npath1);
@@ -230,7 +230,7 @@ public class TestAPSP {
 
 		path = info.getShortestPathTo("C");
 		npath = path.getNodePath().toArray();
-		Object npath2[] = { A, C };
+		Object[] npath2 = { A, C };
 
 		assertEquals(2, path.getNodeCount(), 0);
 		assertArrayEquals(npath, npath2);

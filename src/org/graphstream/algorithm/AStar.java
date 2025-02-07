@@ -603,8 +603,8 @@ public class AStar implements Algorithm {
 	 */
 	public static class DistanceCosts implements AStar.Costs {
 		public double heuristic(Node node, Node target) {
-			double xy1[] = nodePosition(node);
-			double xy2[] = nodePosition(target);
+			double[] xy1 = nodePosition(node);
+			double[] xy2 = nodePosition(target);
 
 			double x = xy2[0] - xy1[0];
 			double y = xy2[1] - xy1[1];

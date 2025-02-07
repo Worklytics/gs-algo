@@ -890,8 +890,8 @@ public class Toolkit extends
 
 		int communityCount = communities.size();
 
-		double E[][] = new double[communityCount][];
-		Object keys[] = new Object[communityCount];
+		double[][] E = new double[communityCount][];
+		Object[] keys = new Object[communityCount];
 
 		int k = 0;
 

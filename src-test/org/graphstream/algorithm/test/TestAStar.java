@@ -50,7 +50,7 @@ import static org.junit.Assert.*;
  * @author Antoine Dutot
  */
 public class TestAStar {
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		TestAStar tas = new TestAStar();
 		/*
 		 * tas.setUp(); tas.testAStarNoWeights(); tas.setUp();

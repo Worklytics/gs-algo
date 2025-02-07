@@ -53,7 +53,7 @@ public class TabuEntity extends Entity {
 	/**
 	 * The edges weights of the current node.
 	 */
-	protected double weights[];
+	protected double[] weights;
 
 	/**
 	 * Start the entity on the given node.

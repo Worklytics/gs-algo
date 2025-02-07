@@ -61,7 +61,7 @@ public class URLGenerator extends BaseGenerator {
 		HOST, PATH, FULL
 	}
 
-	private static String REGEX = "href=\"([^\"]*)\"";
+	private static final String REGEX = "href=\"([^\"]*)\"";
 
 	protected HashSet<String> urls;
 	protected LinkedList<String> stepUrls;
@@ -251,9 +251,7 @@ public class URLGenerator extends BaseGenerator {
 	 * @param regex regex used to filter url
 	 */
 	public void declineMatchingURL(final String regex) {
-		URLFilter f = url -> {
-            return !url.matches(regex);
-        };
+		URLFilter f = url -> !url.matches(regex);
 
 		filters.add(f);
 	}
@@ -440,20 +438,14 @@ public class URLGenerator extends BaseGenerator {
 		String nodeId = url;
 		URI uri = new URI(url);
 
-		switch (mode) {
-		case HOST:
-			nodeId = String.format("%s://%s", uri.getScheme(), uri.getHost());
-			break;
-		case PATH:
-			nodeId = String.format("%s://%s%s", uri.getScheme(), uri.getHost(),
-					uri.getPath());
-			break;
-		case FULL:
-			nodeId = String.format("%s://%s%s%s", uri.getScheme(), uri
-					.getHost(), uri.getPath(), uri.getQuery() == null ? ""
-					: uri.getQuery());
-			break;
-		}
+        nodeId = switch (mode) {
+            case HOST -> String.format("%s://%s", uri.getScheme(), uri.getHost());
+            case PATH -> String.format("%s://%s%s", uri.getScheme(), uri.getHost(),
+                    uri.getPath());
+            case FULL -> String.format("%s://%s%s%s", uri.getScheme(), uri
+                    .getHost(), uri.getPath(), uri.getQuery() == null ? ""
+                    : uri.getQuery());
+        };
 
 		return nodeId;
 	}

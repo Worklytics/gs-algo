@@ -234,14 +234,12 @@ public class FixedArrayList<E>
 		int n = size();
 		int m = elements.size();
 		int j = 0;
-		Object a[] = new Object[n];
+		Object[] a = new Object[n];
 
-		for(int i=0; i<m; ++i) {
-			E e = elements.get(i);
-
-			if(e != null)
-				a[j++] = e;
-		}
+        for (E e : elements) {
+            if (e != null)
+                a[j++] = e;
+        }
 
 		assert(j == n);
 		return a;
