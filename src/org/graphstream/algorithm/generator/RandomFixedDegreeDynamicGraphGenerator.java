@@ -212,8 +212,8 @@ public class RandomFixedDegreeDynamicGraphGenerator extends BaseGenerator {
 
 		double degreMoyen = meanDegree();
 
-		nbCreationsEdges = (int) (random.nextFloat() * (((meanDegreeLimit - degreMoyen) * (internalGraph
-				.getNodeCount() / 2)) * Math.log(step) / Math.log(step
+		nbCreationsEdges = (int) (random.nextFloat() * (((meanDegreeLimit - degreMoyen) * ((double) internalGraph
+                .getNodeCount() / 2)) * Math.log(step) / Math.log(step
 				+ deltaStep)));
 
 		if (internalGraph.getNodeCount() > 1) {

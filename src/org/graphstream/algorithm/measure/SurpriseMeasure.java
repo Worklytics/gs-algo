@@ -152,7 +152,7 @@ public class SurpriseMeasure implements Algorithm {
 		if (communities.containsKey(NULL))
 			System.err.print("[WARNING] Some nodes do not have community.\n");
 
-		double F = graph.getNodeCount() * (graph.getNodeCount() - 1) / 2;
+		double F = (double) (graph.getNodeCount() * (graph.getNodeCount() - 1)) / 2;
 		double p = 0;
 		double M = 0;
 		double n = graph.getEdgeCount();
@@ -168,10 +168,9 @@ public class SurpriseMeasure implements Algorithm {
 				p++;
 		}
 
-		for (int i = 0; i < communitiesCount.size(); i++) {
-			int k = communitiesCount.get(i);
-			M += k * (k - 1) / 2;
-		}
+        for (int k : communitiesCount) {
+            M += (double) (k * (k - 1)) / 2;
+        }
 
 		W = Math.min(M, n);
 		S = cumulativeHypergeometricDistribution(p, W, F, n, M);
