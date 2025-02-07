@@ -120,8 +120,8 @@ public class TarjanStronglyConnectedComponents implements Algorithm {
 	 * Build a new Tarjan algorithm.
 	 */
 	public TarjanStronglyConnectedComponents() {
-		this.data = new HashMap<Node, NodeData>();
-		this.S = new Stack<Node>();
+		this.data = new HashMap<>();
+		this.S = new Stack<>();
 		this.sccIndex = new IntegerIndexGenerator();
 		this.sccAttribute = "scc";
 	}

@@ -230,7 +230,7 @@ public class Centroid implements Algorithm {
 	public void compute() {
 		//float min = Float.MAX_VALUE;
 		DoubleAccumulator min = new DoubleAccumulator((x, y) -> y, Double.MAX_VALUE);
-		HashSet<Node> centroid = new HashSet<Node>();
+		HashSet<Node> centroid = new HashSet<>();
 		
 		graph.nodes().forEach(node -> {
 			DoubleAccumulator m = new DoubleAccumulator((x, y) -> x + y, 0);

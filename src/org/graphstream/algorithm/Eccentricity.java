@@ -224,7 +224,7 @@ public class Eccentricity implements Algorithm {
 	 */
 	public void compute() {
 		DoubleAccumulator min = new DoubleAccumulator((x, y) -> y, Double.MAX_VALUE);
-		HashSet<Node> eccentricity = new HashSet<Node>();
+		HashSet<Node> eccentricity = new HashSet<>();
 		
 		graph.nodes().forEach(node -> {
 			DoubleAccumulator m = new DoubleAccumulator((x, y) -> y, Double.MIN_VALUE); 

@@ -124,7 +124,7 @@ public class RandomTools {
 	public static Set<Integer> randomKsubset(int n, int k, Set<Integer> subset,
 			Random rnd) {
 		if (subset == null)
-			subset = new HashSet<Integer>(4 * k / 3 + 1);
+			subset = new HashSet<>(4 * k / 3 + 1);
 		else
 			subset.clear();
 		for (int i = n - k; i < n; i++) {

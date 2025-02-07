@@ -235,7 +235,7 @@ public class BellmanFord implements Algorithm {
 	 *         {@link org.graphstream.graph.Path} objects.
 	 */
 	public List<Path> getPathSetShortestPaths(Node end) {
-		ArrayList<Path> paths = new ArrayList<Path>();
+		ArrayList<Path> paths = new ArrayList<>();
 		pathSetShortestPath_facilitate(end, new Path(), paths);
 		return paths;
 	}
@@ -408,10 +408,10 @@ public class BellmanFord implements Algorithm {
 
 						if (d1 != null && d1 == d0 + we) {
 							if (predecessors == null) {
-								predecessors = new ArrayList<Edge>();
+								predecessors = new ArrayList<>();
 							}
 						} else {
-							predecessors = new ArrayList<Edge>();
+							predecessors = new ArrayList<>();
 						}
 						if (!predecessors.contains(e)) {
 							predecessors.add(e);

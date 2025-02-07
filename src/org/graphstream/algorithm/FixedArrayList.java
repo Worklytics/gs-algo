@@ -64,12 +64,12 @@ public class FixedArrayList<E>
 	/**
 	 * List of elements.
 	 */
-	protected ArrayList<E> elements = new ArrayList<E>();
+	protected ArrayList<E> elements = new ArrayList<>();
 
 	/**
 	 * List of free indices.
 	 */
-	protected ArrayList<Integer> freeIndices = new ArrayList<Integer>();
+	protected ArrayList<Integer> freeIndices = new ArrayList<>();
 
 	/**
 	 * Last inserted element index.
@@ -79,13 +79,13 @@ public class FixedArrayList<E>
 // Construction
 
 	public FixedArrayList() {
-		elements = new ArrayList<E>();
-		freeIndices = new ArrayList<Integer>(16);
+		elements = new ArrayList<>();
+		freeIndices = new ArrayList<>(16);
 	}
 
 	public FixedArrayList(int capacity) {
-		elements = new ArrayList<E>(capacity);
-		freeIndices = new ArrayList<Integer>(16);
+		elements = new ArrayList<>(capacity);
+		freeIndices = new ArrayList<>(16);
 	}
 
 // Access

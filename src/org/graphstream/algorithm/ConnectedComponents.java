@@ -259,8 +259,8 @@ public class ConnectedComponents extends SinkAdapter
 		this.graph = graph;
 		this.graph.addSink(this);
 
-		components = new HashSet<ConnectedComponent>();
-		componentsMap = new HashMap<Node, ConnectedComponent>();
+		components = new HashSet<>();
+		componentsMap = new HashMap<>();
 	}
 
 	/*
@@ -303,7 +303,7 @@ public class ConnectedComponents extends SinkAdapter
 	 *            in the graph structure.
 	 */
 	protected void computeConnectedComponent(ConnectedComponent cc, Node from, Edge drop) {
-		LinkedList<Node> open = new LinkedList<Node>();
+		LinkedList<Node> open = new LinkedList<>();
 
 		open.add(from);
 		cc.registerNode(from);
@@ -797,7 +797,7 @@ public class ConnectedComponents extends SinkAdapter
 		 * @return a new set of nodes belonging to this component
 		 */
 		public Set<Node> getNodeSet() {
-			HashSet<Node> nodes = new HashSet<Node>();
+			HashSet<Node> nodes = new HashSet<>();
 			
 			nodes().forEach(n -> nodes.add(n));
 			

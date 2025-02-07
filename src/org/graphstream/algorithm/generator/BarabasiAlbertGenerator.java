@@ -190,11 +190,11 @@ public class BarabasiAlbertGenerator extends BaseGenerator {
 		addNode("0");
 		addNode("1");
 		addEdge("0_1", "0", "1");
-		degrees = new ArrayList<Integer>();
+		degrees = new ArrayList<>();
 		degrees.add(1);
 		degrees.add(1);
 		sumDeg = 2;
-		connected = new HashSet<Integer>();
+		connected = new HashSet<>();
 	}
 
 	/**

@@ -87,9 +87,9 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 	double levelWidth = 1, levelHeight = 1;
 
 	public HierarchicalLayout() {
-		roots = new LinkedList<String>();
+		roots = new LinkedList<>();
 		// listeners = new LinkedList<LayoutListener>();
-		nodesPosition = new HashMap<String, Position>();
+		nodesPosition = new HashMap<>();
 		internalGraph = new AdjacencyListGraph("hierarchical_layout-intern");
 		hi = new Point3();
 		lo = new Point3();
@@ -132,7 +132,7 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 
 		final int[] columns = new int[internalGraph.getNodeCount()];
 
-		LinkedList<Node> roots = new LinkedList<Node>(), roots2 = new LinkedList<Node>();
+		LinkedList<Node> roots = new LinkedList<>(), roots2 = new LinkedList<>();
 
 		if (this.roots.size() > 0) {
 			for (int i = 0; i < this.roots.size(); i++)
@@ -158,7 +158,7 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 
 		Box rootBox = new Box();
 		LevelBox rootLevelBox = new LevelBox(0);
-		LinkedList<LevelBox> levelBoxes = new LinkedList<LevelBox>();
+		LinkedList<LevelBox> levelBoxes = new LinkedList<>();
 
 		rootLevelBox.add(rootBox);
 		levelBoxes.add(rootLevelBox);
@@ -195,7 +195,7 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 			roots2.clear();
 		} while (roots.size() > 0);
 
-		FibonacciHeap<Integer, Box> boxes = new FibonacciHeap<Integer, Box>();
+		FibonacciHeap<Integer, Box> boxes = new FibonacciHeap<>();
 		boxes.add(0, rootBox);
 
 		for (int i = 0; i < internalGraph.getNodeCount(); i++) {
@@ -631,19 +631,19 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 
 		void sort() {
 			if (level > 0) {
-				Collections.sort(this, new Comparator<Box>() {
-					public int compare(Box b0, Box b1) {
-						Box pb0 = getBox(b0.parent);
-						Box pb1 = getBox(b1.parent);
+				Collections.sort(this, new Comparator<>() {
+                    public int compare(Box b0, Box b1) {
+                        Box pb0 = getBox(b0.parent);
+                        Box pb1 = getBox(b1.parent);
 
-						if (pb0.order < pb1.order)
-							return -1;
-						else if (pb0.order > pb1.order)
-							return 1;
+                        if (pb0.order < pb1.order)
+                            return -1;
+                        else if (pb0.order > pb1.order)
+                            return 1;
 
-						return 0;
-					}
-				});
+                        return 0;
+                    }
+                });
 			}
 
 			for (int i = 0; i < size(); i++)

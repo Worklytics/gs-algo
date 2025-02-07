@@ -78,8 +78,8 @@ public class Eades84Layout extends PipeBase implements Layout {
 
 		is3D = false;
 
-		springs = new HashMap<String, Spring>();
-		particles = new HashMap<String, EadesParticle>();
+		springs = new HashMap<>();
+		particles = new HashMap<>();
 		random = new Random();
 //		listeners = new LinkedList<LayoutListener>();
 
@@ -329,7 +329,7 @@ public class Eades84Layout extends PipeBase implements Layout {
 
 		public EadesParticle(String id) {
 			this.id = id;
-			springs = new HashMap<EadesParticle, Spring>();
+			springs = new HashMap<>();
 			dir = new Vector3();
 			sum = new Vector3();
 			pos = new Point3();

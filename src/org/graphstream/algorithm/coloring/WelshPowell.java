@@ -250,8 +250,8 @@ public class WelshPowell implements Algorithm {
 		// the algorithm requires the use of a sorted list using
 		// degree values for sorting them.
 
-		LinkedList<Node> sortedNodes = new LinkedList<Node>();
-		FibonacciHeap<Integer, Node> heap = new FibonacciHeap<Integer, Node>();
+		LinkedList<Node> sortedNodes = new LinkedList<>();
+		FibonacciHeap<Integer, Node> heap = new FibonacciHeap<>();
 
 		for (int i = 0; i < g.getNodeCount(); i++) {
 			Node n = g.getNode(i);
@@ -272,7 +272,7 @@ public class WelshPowell implements Algorithm {
 
 		while (sortedNodes.size() > 0) {
 			Node root = sortedNodes.poll();
-			LinkedList<Node> myGroup = new LinkedList<Node>();
+			LinkedList<Node> myGroup = new LinkedList<>();
 			myGroup.add(root);
 
 			root.setAttribute(attributeName, nbColors);

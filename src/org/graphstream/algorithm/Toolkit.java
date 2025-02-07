@@ -409,17 +409,17 @@ public class Toolkit extends
 	 * @complexity O(n log(n)) where n is the number of nodes.
 	 */
 	public static ArrayList<Node> degreeMap(Graph graph) {
-		ArrayList<Node> map = new ArrayList<Node>();
+		ArrayList<Node> map = new ArrayList<>();
 
 		graph.nodes().forEach(node -> {
 			map.add(node);
 		});
 
-		Collections.sort(map, new Comparator<Node>() {
-			public int compare(Node a, Node b) {
-				return b.getDegree() - a.getDegree();
-			}
-		});
+		Collections.sort(map, new Comparator<>() {
+            public int compare(Node a, Node b) {
+                return b.getDegree() - a.getDegree();
+            }
+        });
 
 		return map;
 	}
@@ -435,7 +435,7 @@ public class Toolkit extends
 	 * @see #weightedDegree(Node, String, double)
 	 */
 	public static ArrayList<Node> weightedDegreeMap(Graph graph, String weightAttribute, double defaultWeightValue) {
-		ArrayList<Node> map = new ArrayList<Node>();
+		ArrayList<Node> map = new ArrayList<>();
 
 		graph.nodes().forEach(node -> {
 			map.add(node);
@@ -825,7 +825,7 @@ public class Toolkit extends
 	 */
 	public static HashMap<Object, HashSet<Node>> communities(Graph graph,
 			String marker) {
-		HashMap<Object, HashSet<Node>> communities = new HashMap<Object, HashSet<Node>>();
+		HashMap<Object, HashSet<Node>> communities = new HashMap<>();
 
 		graph.nodes().forEach(node -> {
 			Object communityMarker = node.getAttribute(marker);
@@ -836,7 +836,7 @@ public class Toolkit extends
 			HashSet<Node> community = communities.get(communityMarker);
 
 			if (community == null) {
-				community = new HashSet<Node>();
+				community = new HashSet<>();
 				communities.put(communityMarker, community);
 			}
 
@@ -1042,7 +1042,7 @@ public class Toolkit extends
 	 */
 	protected static double modularityCountEdges(HashSet<Node> community,
 			HashSet<Node> otherCommunity, String weightMarker) {
-		HashSet<Edge> marked = new HashSet<Edge>();
+		HashSet<Edge> marked = new HashSet<>();
 
 		DoubleAccumulator edgeCount = new DoubleAccumulator((x, y) -> x + y, 0);
 
@@ -1281,7 +1281,7 @@ public class Toolkit extends
 			.filter(e -> e.isLoop())
 			.forEach(e -> illegalArgumentException());
 				
-		return new BronKerboschIterator<T>(graph);
+		return new BronKerboschIterator<>(graph);
 	}
 	
 	public static void illegalArgumentException() {
@@ -1298,12 +1298,12 @@ public class Toolkit extends
 	 */
 	public static <T extends Node> Iterable<List<T>> getMaximalCliques(
 			final Graph graph) {
-		return new Iterable<List<T>>() {
-			public Iterator<List<T>> iterator() {
-				return getMaximalCliqueIterator(graph);
-			}
+		return new Iterable<>() {
+            public Iterator<List<T>> iterator() {
+                return getMaximalCliqueIterator(graph);
+            }
 
-		};
+        };
 	}
 
 	protected static class StackElement<T extends Node> {
@@ -1358,15 +1358,15 @@ public class Toolkit extends
 		}
 
 		protected StackElement<T> nextElement() {
-			StackElement<T> next = new StackElement<T>();
+			StackElement<T> next = new StackElement<>();
 			String currentId = currentCandidate().getId();
 
-			next.candidates = new ArrayList<T>();
+			next.candidates = new ArrayList<>();
 			for (T x : candidates)
 				if (x.getEdgeBetween(currentId) != null)
 					next.candidates.add(x);
 
-			next.excluded = new ArrayList<T>();
+			next.excluded = new ArrayList<>();
 			for (T x : excluded)
 				if (x.getEdgeBetween(currentId) != null)
 					next.excluded.add(x);
@@ -1412,16 +1412,16 @@ public class Toolkit extends
 		}
 
 		protected BronKerboschIterator(Graph graph) {
-			clique = new Stack<T>();
-			stack = new Stack<StackElement<T>>();
-			StackElement<T> initial = new StackElement<T>();
+			clique = new Stack<>();
+			stack = new Stack<>();
+			StackElement<T> initial = new StackElement<>();
 
 			// initial.candidates = new ArrayList<T>(graph.<T> getNodeSet());
 			// More efficient initial order
-			initial.candidates = new ArrayList<T>(graph.getNodeCount());
+			initial.candidates = new ArrayList<>(graph.getNodeCount());
 			getDegeneracy(graph, initial.candidates);
 
-			initial.excluded = new ArrayList<T>();
+			initial.excluded = new ArrayList<>();
 			initial.setPivot();
 			initial.candidateIndex = 0;
 			initial.forwardIndex();
@@ -1436,7 +1436,7 @@ public class Toolkit extends
 		public List<T> next() {
 			if (clique.isEmpty())
 				throw new NoSuchElementException();
-			List<T> result = new ArrayList<T>(clique);
+			List<T> result = new ArrayList<>(clique);
 			constructNextMaximalClique();
 			return result;
 		}
@@ -1483,12 +1483,12 @@ public class Toolkit extends
 		for (Node x : graph)
 			if (x.getDegree() > maxDeg)
 				maxDeg = x.getDegree();
-		List<DegenEntry> heads = new ArrayList<DegenEntry>(maxDeg + 1);
+		List<DegenEntry> heads = new ArrayList<>(maxDeg + 1);
 		for (int d = 0; d <= maxDeg; d++)
 			heads.add(null);
 
-		Map<Node, DegenEntry> map = new HashMap<Node, DegenEntry>(
-				4 * (n + 2) / 3);
+		Map<Node, DegenEntry> map = new HashMap<>(
+                4 * (n + 2) / 3);
 		for (Node x : graph) {
 			DegenEntry entry = new DegenEntry();
 			entry.node = x;
@@ -1779,7 +1779,7 @@ public class Toolkit extends
 					+ graph.getNodeCount());
 		Set<Integer> subset = RandomTools.randomKsubset(graph.getNodeCount(),
 				k, null, random);
-		List<Node> result = new ArrayList<Node>(subset.size());
+		List<Node> result = new ArrayList<>(subset.size());
 		for (int i : subset)
 			result.add(graph.getNode(i));
 		return result;
@@ -1825,7 +1825,7 @@ public class Toolkit extends
 			throw new IllegalArgumentException("p must be between 0 and 1");
 		Set<Integer> subset = RandomTools.randomPsubset(graph.getNodeCount(),
 				p, null, random);
-		List<Node> result = new ArrayList<Node>(subset.size());
+		List<Node> result = new ArrayList<>(subset.size());
 		for (int i : subset)
 			result.add(graph.getNode(i));
 		return result;
@@ -1872,7 +1872,7 @@ public class Toolkit extends
 					+ graph.getEdgeCount());
 		Set<Integer> subset = RandomTools.randomKsubset(graph.getEdgeCount(),
 				k, null, random);
-		List<Edge> result = new ArrayList<Edge>(subset.size());
+		List<Edge> result = new ArrayList<>(subset.size());
 		for (int i : subset)
 			result.add(graph.getEdge(i));
 		return result;
@@ -1918,7 +1918,7 @@ public class Toolkit extends
 			throw new IllegalArgumentException("p must be between 0 and 1");
 		Set<Integer> subset = RandomTools.randomPsubset(graph.getEdgeCount(),
 				p, null, random);
-		List<Edge> result = new ArrayList<Edge>(subset.size());
+		List<Edge> result = new ArrayList<>(subset.size());
 		for (int i : subset)
 			result.add(graph.getEdge(i));
 		return result;

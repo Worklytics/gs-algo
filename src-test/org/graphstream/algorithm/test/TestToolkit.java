@@ -102,7 +102,7 @@ public class TestToolkit {
 
 		int d = Toolkit.getDegeneracy(g, null);
 		assertEquals(3, d);
-		List<Node> ordering = new ArrayList<Node>();
+		List<Node> ordering = new ArrayList<>();
 		d = Toolkit.getDegeneracy(g, ordering);
 		assertEquals(3, d);
 		assertEquals(9, ordering.size());
@@ -118,7 +118,7 @@ public class TestToolkit {
 
 		int cliqueCount = 0;
 		int totalNodeCount = 0;
-		List<Node> maximumClique = new ArrayList<Node>();
+		List<Node> maximumClique = new ArrayList<>();
 		for (List<Node> clique : Toolkit.getMaximalCliques(g)) {
 			assertTrue(Toolkit.isClique(clique));
 			assertTrue(Toolkit.isMaximalClique(clique, g));

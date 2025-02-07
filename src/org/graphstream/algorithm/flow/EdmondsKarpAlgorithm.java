@@ -48,7 +48,7 @@ public class EdmondsKarpAlgorithm extends FordFulkersonAlgorithm {
 	 * .LinkedList, org.graphstream.graph.Node, org.graphstream.graph.Node)
 	 */
 	protected double findPath(LinkedList<Node> path, Node source, Node target) {
-		LinkedList<Node> Q = new LinkedList<Node>();
+		LinkedList<Node> Q = new LinkedList<>();
 		Node u;
 		int[] P = new int[source.getGraph().getNodeCount()];
 		double[] M = new double[source.getGraph().getNodeCount()];

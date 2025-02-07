@@ -372,7 +372,7 @@ public class Dijkstra extends AbstractSpanningTree {
 	@Override
 	protected void makeTree() {
 		// initialization
-		FibonacciHeap<Double, Node> heap = new FibonacciHeap<Double, Node>();
+		FibonacciHeap<Double, Node> heap = new FibonacciHeap<>();
 		
 		graph.nodes().forEach(node -> {
 			Data data = new Data();
@@ -503,8 +503,8 @@ public class Dijkstra extends AbstractSpanningTree {
 		}
 
 		public PathIterator(Node target) {
-			nodes = new ArrayList<Node>();
-			iterators = new ArrayList<Iterator<Edge>>();
+			nodes = new ArrayList<>();
+			iterators = new ArrayList<>();
 			if (Double.isInfinite(getPathLength(target))) {
 				nextPath = null;
 				return;
@@ -678,11 +678,11 @@ public class Dijkstra extends AbstractSpanningTree {
 	 * @see #getPathNodesStream(Node)
 	 */
 	public Iterable<Node> getPathNodes(final Node target) {
-		return new Iterable<Node>() {
-			public Iterator<Node> iterator() {
-				return new NodeIterator(target);
-			}
-		};
+		return new Iterable<>() {
+            public Iterator<Node> iterator() {
+                return new NodeIterator(target);
+            }
+        };
 	}
 
 	/**
@@ -723,12 +723,12 @@ public class Dijkstra extends AbstractSpanningTree {
 	 * @see #getPathEdgesStream(Node)
 	 */
 	public Iterable<Edge> getPathEdges(final Node target) {
-		return new Iterable<Edge>() {
-			public Iterator<Edge> iterator() {
-				return new EdgeIterator(target);
-			}
+		return new Iterable<>() {
+            public Iterator<Edge> iterator() {
+                return new EdgeIterator(target);
+            }
 
-		};
+        };
 	}
 
 	/**
@@ -770,11 +770,11 @@ public class Dijkstra extends AbstractSpanningTree {
 	 * @see #getAllPathsStream(Node)
 	 */
 	public Iterable<Path> getAllPaths(final Node target) {
-		return new Iterable<Path>() {
-			public Iterator<Path> iterator() {
-				return new PathIterator(target);
-			}
-		};
+		return new Iterable<>() {
+            public Iterator<Path> iterator() {
+                return new PathIterator(target);
+            }
+        };
 	}
 
 	/**
@@ -816,7 +816,7 @@ public class Dijkstra extends AbstractSpanningTree {
 		Path path = new Path();
 		if (Double.isInfinite(getPathLength(target)))
 			return path;
-		Stack<Edge> stack = new Stack<Edge>();
+		Stack<Edge> stack = new Stack<>();
 		
 		getPathEdges(target).forEach(e -> stack.push(e));
 			

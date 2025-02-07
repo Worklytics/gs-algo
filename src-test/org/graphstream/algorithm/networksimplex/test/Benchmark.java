@@ -85,7 +85,7 @@ class Benchmark {
 			g.addNode("" + i);
 		source = g.getNode(0);
 		
-		eList = new ArrayList<TwoInts>(N * (N - 1) / 2);
+		eList = new ArrayList<>(N * (N - 1) / 2);
 		for (int i = 0; i < N; i++)
 			for (int j = i + i; j < N; j++)
 				eList.add(new TwoInts(i, j));

@@ -258,7 +258,7 @@ public class RandomWalk extends SinkAdapter implements DynamicAlgorithm {
 	/**
 	 * The set of entities travelling on the graph.
 	 */
-	protected ArrayList<Entity> entities = new ArrayList<Entity>();
+	protected ArrayList<Entity> entities = new ArrayList<>();
 
 	/**
 	 * The random seed.
@@ -601,18 +601,18 @@ public class RandomWalk extends SinkAdapter implements DynamicAlgorithm {
 	 *         entity pass.
 	 */
 	public ArrayList<Edge> findTheMostUsedEdges() {
-		ArrayList<Edge> edges = new ArrayList<Edge>(context.graph.getEdgeCount());
+		ArrayList<Edge> edges = new ArrayList<>(context.graph.getEdgeCount());
 		
 		context.graph.edges().forEach(e -> edges.add(e));
 		
-		Collections.sort(edges, new Comparator<Edge>() {
-			public int compare(Edge e1, Edge e2) {
-				int n1 = (int) e1.getNumber(context.passesAttribute);
-				int n2 = (int) e2.getNumber(context.passesAttribute);
+		Collections.sort(edges, new Comparator<>() {
+            public int compare(Edge e1, Edge e2) {
+                int n1 = (int) e1.getNumber(context.passesAttribute);
+                int n2 = (int) e2.getNumber(context.passesAttribute);
 
-				return (n1 - n2);
-			}
-		});
+                return (n1 - n2);
+            }
+        });
 
 		return edges;
 	}
@@ -625,18 +625,18 @@ public class RandomWalk extends SinkAdapter implements DynamicAlgorithm {
 	 *         entity pass.
 	 */
 	public ArrayList<Node> findTheMostUsedNodes() {
-		ArrayList<Node> nodes = new ArrayList<Node>(context.graph.getNodeCount());
+		ArrayList<Node> nodes = new ArrayList<>(context.graph.getNodeCount());
 				
 		context.graph.nodes().forEach(n -> nodes.add(n));
 
-		Collections.sort(nodes, new Comparator<Node>() {
-			public int compare(Node e1, Node e2) {
-				int n1 = (int) e1.getNumber(context.passesAttribute);
-				int n2 = (int) e2.getNumber(context.passesAttribute);
+		Collections.sort(nodes, new Comparator<>() {
+            public int compare(Node e1, Node e2) {
+                int n1 = (int) e1.getNumber(context.passesAttribute);
+                int n2 = (int) e2.getNumber(context.passesAttribute);
 
-				return (n1 - n2);
-			}
-		});
+                return (n1 - n2);
+            }
+        });
 
 		return nodes;
 	}

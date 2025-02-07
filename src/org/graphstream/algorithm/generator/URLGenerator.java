@@ -77,12 +77,12 @@ public class URLGenerator extends BaseGenerator {
 	protected final ReentrantLock lock;
 
 	public URLGenerator(String... startFrom) {
-		urls = new HashSet<String>();
-		stepUrls = new LinkedList<String>();
-		newUrls = new HashSet<String>();
+		urls = new HashSet<>();
+		stepUrls = new LinkedList<>();
+		newUrls = new HashSet<>();
 		hrefPattern = Pattern.compile(REGEX);
 		mode = Mode.HOST;
-		filters = new LinkedList<URLFilter>();
+		filters = new LinkedList<>();
 		directed = false;
 		step = 0;
 		printProgress = false;
@@ -298,8 +298,8 @@ public class URLGenerator extends BaseGenerator {
 		int t = Math.min(threads, stepUrls.size());
 		int byThreads = stepUrls.size() / t;
 
-		LinkedList<Worker> workers = new LinkedList<Worker>();
-		LinkedList<Thread> workersThreads = new LinkedList<Thread>();
+		LinkedList<Worker> workers = new LinkedList<>();
+		LinkedList<Thread> workersThreads = new LinkedList<>();
 
 		for (int i = 0; i < t; i++) {
 			int start = i * byThreads;
@@ -348,7 +348,7 @@ public class URLGenerator extends BaseGenerator {
 		URLConnection conn;
 		InputStream stream;
 		BufferedReader reader;
-		HashSet<String> localUrls = new HashSet<String>();
+		HashSet<String> localUrls = new HashSet<>();
 
 		if (!isValid(url))
 			return;

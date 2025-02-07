@@ -74,7 +74,7 @@ public class FordFulkersonAlgorithm extends FlowAlgorithmBase {
 		}
 
 		double minCf;
-		LinkedList<Node> path = new LinkedList<Node>();
+		LinkedList<Node> path = new LinkedList<>();
 
 		while ((minCf = findPath(path, source, sink)) > 0) {
 			for (int i = 1; i < path.size(); i++) {

@@ -167,13 +167,13 @@ public class Prim extends Kruskal {
 	@Override
 	protected void makeTree() {
 		if (treeEdges == null)
-			treeEdges = new LinkedList<Edge>();
+			treeEdges = new LinkedList<>();
 		else
 			treeEdges.clear();
 
 		int n = graph.getNodeCount();
 		Data[] data = new Data[n];
-		FibonacciHeap<Double, Node> heap = new FibonacciHeap<Double, Node>();
+		FibonacciHeap<Double, Node> heap = new FibonacciHeap<>();
 		for (int i = 0; i < n; i++) {
 			data[i] = new Data();
 			data[i].edgeToTree = null;

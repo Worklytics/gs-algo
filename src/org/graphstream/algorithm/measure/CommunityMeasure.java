@@ -265,7 +265,7 @@ public abstract class CommunityMeasure extends SinkAdapter implements
 			HashSet<Node> community = assignment.get(communityKey);
 
 			if (community == null) {
-				community = new HashSet<Node>();
+				community = new HashSet<>();
 				assignment.put(communityKey, community);
 			}
 			community.add(node);

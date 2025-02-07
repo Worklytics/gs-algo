@@ -130,8 +130,8 @@ public class SurpriseMeasure implements Algorithm {
 	 * @see org.graphstream.algorithm.Algorithm#compute()
 	 */
 	public void compute() {
-		HashMap<Object, Integer> communities = new HashMap<Object, Integer>();
-		ArrayList<Integer> communitiesCount = new ArrayList<Integer>();
+		HashMap<Object, Integer> communities = new HashMap<>();
+		ArrayList<Integer> communitiesCount = new ArrayList<>();
 
 		for (int i = 0; i < graph.getNodeCount(); i++) {
 			Object community = graph.getNode(i).getAttribute(

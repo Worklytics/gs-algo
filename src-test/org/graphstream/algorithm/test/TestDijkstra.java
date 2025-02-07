@@ -177,7 +177,7 @@ public class TestDijkstra {
 		
 		// check all shortest paths
 		// there are two pats A->F
-		List<String> lp = new ArrayList<String>();
+		List<String> lp = new ArrayList<>();
 		for (Path p : d.getAllPaths(g.getNode("F")))
 			lp.add(p.toString());
 		assertEquals(2, lp.size());

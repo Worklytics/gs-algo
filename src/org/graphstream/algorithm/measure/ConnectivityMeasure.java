@@ -174,9 +174,9 @@ public class ConnectivityMeasure {
 	 * @return a k-tuple of nodes or null if graph is (k+1)-vertex-connected
 	 */
 	public static Node[] getKDisconnectingNodeTuple(Graph g, int k) {
-		LinkedList<Integer> toVisit = new LinkedList<Integer>();
+		LinkedList<Integer> toVisit = new LinkedList<>();
 		boolean[] visited = new boolean[g.getNodeCount()];
-		HashSet<Integer> removed = new HashSet<Integer>();
+		HashSet<Integer> removed = new HashSet<>();
 		KIndexesArray karray = new KIndexesArray(k, g.getNodeCount());
 
 		if (k >= g.getNodeCount())
@@ -233,9 +233,9 @@ public class ConnectivityMeasure {
 	 * @return a k-tuple of edges or null if graph is (k+1)-edge-connected
 	 */
 	public static Edge[] getKDisconnectingEdgeTuple(Graph g, int k) {
-		LinkedList<Integer> toVisit = new LinkedList<Integer>();
+		LinkedList<Integer> toVisit = new LinkedList<>();
 		boolean[] visited = new boolean[g.getNodeCount()];
-		HashSet<Integer> removed = new HashSet<Integer>();
+		HashSet<Integer> removed = new HashSet<>();
 		KIndexesArray karray = new KIndexesArray(k, g.getNodeCount());
 
 		int minDegree = Integer.MAX_VALUE;

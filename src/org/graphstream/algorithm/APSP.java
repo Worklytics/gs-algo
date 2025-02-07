@@ -418,7 +418,7 @@ public class APSP extends SinkAdapter implements Algorithm {
 			// the node to all its neighbour. It set the distance to 1 if there
 			// are no weights on edges.
 
-			ArrayList<Node> nodeList = new ArrayList<Node>();
+			ArrayList<Node> nodeList = new ArrayList<>();
 
 			graph.nodes().forEach(node -> {
 				node.setAttribute(APSPInfo.ATTRIBUTE_NAME, new APSPInfo(node,
@@ -504,7 +504,7 @@ public class APSP extends SinkAdapter implements Algorithm {
 		/**
 		 * Shortest paths toward all other accessible nodes.
 		 */
-		public HashMap<String, TargetPath> targets = new HashMap<String, TargetPath>();
+		public HashMap<String, TargetPath> targets = new HashMap<>();
 
 		/**
 		 * Create the new information and put in it all the paths between this
@@ -614,7 +614,7 @@ public class APSP extends SinkAdapter implements Algorithm {
 
 			if (tpath != null) {
 				Path path = new Path(); // XXX use the Path object directly.
-				ArrayList<Node> nodePath = new ArrayList<Node>();
+				ArrayList<Node> nodePath = new ArrayList<>();
 
 				nodePath.add(source);
 				nodePath.add(tpath.target);

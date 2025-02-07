@@ -78,7 +78,7 @@ public class LCFGenerator extends BaseGenerator {
 	 */
 	public LCFGenerator(LCF lcf, int initialRingSize, boolean canBeExtended) {
 		this.lcf = lcf;
-		this.crossed = new HashSet<String>();
+		this.crossed = new HashSet<>();
 		this.initialRingSize = initialRingSize;
 		this.canBeExtended = canBeExtended;
 	}
@@ -134,7 +134,7 @@ public class LCFGenerator extends BaseGenerator {
 	protected void makeLCF() {
 		int i = 0;
 		int r = 0;
-		HashSet<String> added = new HashSet<String>();
+		HashSet<String> added = new HashSet<>();
 
 		while (r < lcf.repeat && i < n) {
 			for (int k = 0; k < lcf.steps.length && i < n; k++) {

@@ -89,7 +89,7 @@ public class DynamicOneToAllShortestPath extends NetworkSimplex {
 		dijkstra.compute();
 		
 		// init
-		Map<NSNode, NSNode> last = new HashMap<NSNode, NSNode>(4 * (nodes.size() + 1) / 3 + 1);
+		Map<NSNode, NSNode> last = new HashMap<>(4 * (nodes.size() + 1) / 3 + 1);
 		last.put(root, root);
 		root.thread = root;
 		
@@ -275,11 +275,11 @@ public class DynamicOneToAllShortestPath extends NetworkSimplex {
 	 * @see #getPathNodesIterator(Node)
 	 */
 	public <T extends Node> Iterable<Node> getPathNodes(final Node target) {
-		return new Iterable<Node>() {
-			public Iterator<Node> iterator() {
-				return getPathNodesIterator(target);
-			}
-		};
+		return new Iterable<>() {
+            public Iterator<Node> iterator() {
+                return getPathNodesIterator(target);
+            }
+        };
 	}
 
 	/**
@@ -300,7 +300,7 @@ public class DynamicOneToAllShortestPath extends NetworkSimplex {
 	 *             iterator takes O(1) time
 	 */
 	public <T extends Edge> Iterator<Edge> getPathEdgesIterator(Node target) {
-		return new EdgeIterator<Edge>(nodes.get(target.getId()));
+		return new EdgeIterator<>(nodes.get(target.getId()));
 	}
 
 	/**
@@ -314,12 +314,12 @@ public class DynamicOneToAllShortestPath extends NetworkSimplex {
 	 * @see #getPathEdgesIterator(Node)
 	 */
 	public <T extends Edge> Iterable<Edge> getPathEdges(final Node target) {
-		return new Iterable<Edge>() {
-			public Iterator<Edge> iterator() {
-				return getPathEdgesIterator(target);
-			}
+		return new Iterable<>() {
+            public Iterator<Edge> iterator() {
+                return getPathEdgesIterator(target);
+            }
 
-		};
+        };
 	}
 
 	/**
@@ -340,7 +340,7 @@ public class DynamicOneToAllShortestPath extends NetworkSimplex {
 		Path path = new Path();
 		if (getPathLength(target) == Long.MAX_VALUE)
 			return path;
-		Stack<Edge> stack = new Stack<Edge>();
+		Stack<Edge> stack = new Stack<>();
 		for (Edge e : getPathEdges(target))
 			stack.push(e);
 		path.setRoot(graph.getNode(sourceId));

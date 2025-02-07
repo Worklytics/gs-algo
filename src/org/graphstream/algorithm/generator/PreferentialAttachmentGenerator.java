@@ -89,7 +89,7 @@ public class PreferentialAttachmentGenerator extends BaseGenerator {
 	 * @see org.graphstream.algorithm.generator.Generator#begin()
 	 */
 	public void begin() {
-		this.degrees = new ArrayList<Integer>();
+		this.degrees = new ArrayList<>();
 		this.degreeMax = 0;
 
 		addNode("0");

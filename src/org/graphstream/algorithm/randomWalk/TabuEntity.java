@@ -91,7 +91,7 @@ public class TabuEntity extends Entity {
 	 */
 	protected void tabuStep() {
 		int n = current.getOutDegree();
-		ArrayList<Edge> edges = new ArrayList<Edge>();
+		ArrayList<Edge> edges = new ArrayList<>();
 		
 		current.leavingEdges()
 			.filter(e -> !tabu(e.getOpposite(current)))
@@ -186,7 +186,7 @@ public class TabuEntity extends Entity {
 
 		if (context.entityMemory > 0) {
 			if (memory == null)
-				memory = new LinkedList<Node>();
+				memory = new LinkedList<>();
 
 			int n = memory.size();
 

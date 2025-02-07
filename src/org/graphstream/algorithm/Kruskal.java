@@ -220,15 +220,15 @@ public class Kruskal extends AbstractSpanningTree {
 	@Override
 	protected void makeTree() {
 		if (treeEdges == null)
-			treeEdges = new LinkedList<Edge>();
+			treeEdges = new LinkedList<>();
 		else
 			treeEdges.clear();
 
-		List<Edge> sortedEdges = new ArrayList<Edge>(graph.edges().collect(Collectors.toList()));
+		List<Edge> sortedEdges = new ArrayList<>(graph.edges().collect(Collectors.toList()));
 		Collections.sort(sortedEdges, new EdgeComparator());
 		
-		DisjointSets<Node> components = new DisjointSets<Node>(
-				graph.getNodeCount());
+		DisjointSets<Node> components = new DisjointSets<>(
+                graph.getNodeCount());
 		for (Node node : graph)
 			components.add(node);
 				

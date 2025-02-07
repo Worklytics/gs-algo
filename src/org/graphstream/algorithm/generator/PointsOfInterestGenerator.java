@@ -83,7 +83,7 @@ public class PointsOfInterestGenerator extends BaseGenerator {
 		Set<Addict> addict;
 
 		PointOfInterest() {
-			addict = new HashSet<Addict>();
+			addict = new HashSet<>();
 		}
 
 		/**
@@ -181,8 +181,8 @@ public class PointsOfInterestGenerator extends BaseGenerator {
 
 		Addict(String id) {
 			this.id = id;
-			pointsOfInterest = new LinkedList<PointOfInterest>();
-			neighbor = new HashMap<Addict, AddictNeighbor>();
+			pointsOfInterest = new LinkedList<>();
+			neighbor = new HashMap<>();
 		}
 
 		/**
@@ -375,8 +375,8 @@ public class PointsOfInterestGenerator extends BaseGenerator {
 		averagePointsOfInterestCount = 3;
 		linksNeededToCreateEdge = 2;
 
-		addicts = new LinkedList<Addict>();
-		pointsOfInterest = new LinkedList<PointOfInterest>();
+		addicts = new LinkedList<>();
+		pointsOfInterest = new LinkedList<>();
 
 		currentStep = 0;
 	}

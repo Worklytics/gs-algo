@@ -193,12 +193,12 @@ public class AStar implements Algorithm {
 	/**
 	 * The open set.
 	 */
-	protected HashMap<Node, AStarNode> open = new HashMap<Node, AStarNode>();
+	protected HashMap<Node, AStarNode> open = new HashMap<>();
 
 	/**
 	 * The closed set.
 	 */
-	protected HashMap<Node, AStarNode> closed = new HashMap<Node, AStarNode>();
+	protected HashMap<Node, AStarNode> closed = new HashMap<>();
 
 	/**
 	 * If found the shortest path is stored here.
@@ -350,7 +350,7 @@ public class AStar implements Algorithm {
 	public Path buildPath(AStarNode target) {
 		Path path = new Path();
 
-		ArrayList<AStarNode> thePath = new ArrayList<AStarNode>();
+		ArrayList<AStarNode> thePath = new ArrayList<>();
 		AStarNode node = target;
 
 		while (node != null) {

@@ -106,7 +106,7 @@ public class SyncEpidemicCommunityAlgorithm extends EpidemicCommunityAlgorithm {
 		/*
 		 * Reset the scores for each communities
 		 */
-		communityScores = new HashMap<Object, Double>();
+		communityScores = new HashMap<>();
 
 		/*
 		 * Iterate over the nodes that this node "hears"
