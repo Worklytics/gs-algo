@@ -43,6 +43,7 @@ import org.graphstream.ui.geom.Point3;
 import org.graphstream.ui.view.Viewer;
 
 import java.io.IOException;
+import java.io.Serial;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -573,6 +574,7 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 	}
 
 	public static class Box extends LinkedList<Node> {
+		@Serial
 		private static final long serialVersionUID = -1929536876444346726L;
 
 		Node parent;
@@ -614,6 +616,7 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 	}
 
 	static class LevelBox extends LinkedList<Box> {
+		@Serial
 		private static final long serialVersionUID = -5818919480025868466L;
 
 		int level;

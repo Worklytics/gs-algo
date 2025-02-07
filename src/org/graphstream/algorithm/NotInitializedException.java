@@ -29,7 +29,10 @@
  */
 package org.graphstream.algorithm;
 
+import java.io.Serial;
+
 public class NotInitializedException extends RuntimeException {
+	@Serial
 	private static final long serialVersionUID = 7561076615165578902L;
 
 	public NotInitializedException(Algorithm algo) {

@@ -32,6 +32,7 @@ package org.graphstream.algorithm.measure;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serial;
 
 import javax.swing.JFrame;
 
@@ -78,6 +79,7 @@ public abstract class ChartMeasure {
 	 * Exception that can be raised when trying to plot measures.
 	 */
 	public static class PlotException extends Exception {
+		@Serial
 		private static final long serialVersionUID = -1158885472939044996L;
 
 		public PlotException(String message) {

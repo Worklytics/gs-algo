@@ -29,7 +29,10 @@
  */
 package org.graphstream.algorithm;
 
+import java.io.Serial;
+
 public class InvalidParameterException extends Exception {
+	@Serial
 	private static final long serialVersionUID = 7152825386654774035L;
 
 	public InvalidParameterException() {
