@@ -579,7 +579,7 @@ public class Toolkit extends
 	 * degree k, if Ni is the neighborhood of i (a set of nodes), clustering
 	 * coefficient of i is defined as the count of edge e_uv with u,v in Ni
 	 * divided by the maximum possible count, ie. k * (k-1) / 2.
-	 * 
+	 * <p>
 	 * This method only works with undirected graphs.
 	 * 
 	 * @param node
@@ -956,7 +956,7 @@ public class Toolkit extends
 	 * graph to count nodes in communities. For this to work, there must exist
 	 * an attribute on each node whose value define the community the node
 	 * pertains to (see {@link #communities(Graph,String)}).
-	 * 
+	 * <p>
 	 * This method is an utility method that call:
 	 * <ul>
 	 * <li>{@link #communities(Graph,String)}</li>
@@ -984,7 +984,7 @@ public class Toolkit extends
 	 * to (see {@link #communities(Graph,String)}) and a attribute on each edge
 	 * storing their weight (all edges without this attribute will be ignored in
 	 * the computation).
-	 * 
+	 * <p>
 	 * This method is an utility method that call:
 	 * <ul>
 	 * <li>{@link #communities(Graph,String)}</li>
@@ -1543,7 +1543,7 @@ public class Toolkit extends
 
 	/**
 	 * Fills an array with the adjacency matrix of a graph.
-	 * 
+	 * <p>
 	 * The adjacency matrix of a graph is a <i>n</i> times <i>n</i> matrix
 	 * {@code a}, where <i>n</i> is the number of nodes of the graph. The
 	 * element {@code a[i][j]} of this matrix is equal to the number of edges
@@ -1577,7 +1577,7 @@ public class Toolkit extends
 
 	/**
 	 * Returns the adjacency matrix of a graph.
-	 * 
+	 * <p>
 	 * The adjacency matrix of a graph is a <i>n</i> times <i>n</i> matrix
 	 * {@code a}, where <i>n</i> is the number of nodes of the graph. The
 	 * element {@code a[i][j]} of this matrix is equal to the number of edges
@@ -1601,7 +1601,7 @@ public class Toolkit extends
 
 	/**
 	 * Fills an array with the incidence matrix of a graph.
-	 * 
+	 * <p>
 	 * The incidence matrix of a graph is a <i>n</i> times <i>m</i> matrix
 	 * {@code a}, where <i>n</i> is the number of nodes and <i>m</i> is the
 	 * number of edges of the graph. The coefficients {@code a[i][j]} of this
@@ -1644,7 +1644,7 @@ public class Toolkit extends
 
 	/**
 	 * Returns the incidence matrix of a graph.
-	 * 
+	 * <p>
 	 * The incidence matrix of a graph is a <i>n</i> times <i>m</i> matrix
 	 * {@code a}, where <i>n</i> is the number of nodes and <i>m</i> is the
 	 * number of edges of the graph. The coefficients {@code a[i][j]} of this

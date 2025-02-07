@@ -45,7 +45,7 @@ import org.graphstream.stream.SinkAdapter;
 
 /**
  * Get the vertex-connectivity of a graph.
- * 
+ * <p>
  * A graph is said to be k-vertex-connected (or k-connected) if the graph
  * remains connected when you delete fewer than k vertices from the graph (from
  * <a
@@ -100,7 +100,7 @@ public class ConnectivityMeasure {
 	 * Get the edge-connectivity k of a graph such that there is a k-tuple of
 	 * edges whose removal disconnects the graph. This uses the Ford-Fulkerson
 	 * algorithm to compute maximum flows in the graph.
-	 * 
+	 * <p>
 	 * A simple algorithm would, for every pair (u,v), determine the maximum
 	 * flow from u to v with the capacity of all edges in G set to 1 for both
 	 * directions. A graph is k-edge-connected if and only if the maximum flow

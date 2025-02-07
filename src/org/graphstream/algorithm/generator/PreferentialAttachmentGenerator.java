@@ -98,7 +98,7 @@ public class PreferentialAttachmentGenerator extends BaseGenerator {
 
 	/**
 	 * Step of the generator. Add a node and try to connect it with some others.
-	 * 
+	 * <p>
 	 * The complexity of this method is O(n) with n the number of nodes actually
 	 * in the graph.
 	 * 

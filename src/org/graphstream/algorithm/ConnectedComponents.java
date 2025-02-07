@@ -220,7 +220,7 @@ public class ConnectedComponents extends SinkAdapter
 	 * initialized and the algorithm will not receive any event from any graph.
 	 * You will have to call the {@link #init(Graph)} method with a reference to
 	 * a graph so that the computation is able to start.
-	 * 
+	 * <p>
 	 * After the {@link #init(Graph)} method is invoked, the computation starts
 	 * as soon as and event is received or if the {@link #compute()} method is
 	 * invoked.
@@ -287,7 +287,7 @@ public class ConnectedComponents extends SinkAdapter
 
 	/**
 	 * Compute the connected component containing `from`.
-	 * 
+	 * <p>
 	 * We use here the {@link ConnectedComponent#registerNode(Node)} method
 	 * which will update the {@link #componentsMap}, the size of the new
 	 * connected component, the size of the old connected component of `from`
@@ -354,7 +354,7 @@ public class ConnectedComponents extends SinkAdapter
 
 	/**
 	 * Publish the index of the connected component where the node belongs.
-	 * 
+	 * <p>
 	 * This is more efficient than using the {@link #setCountAttribute(String)}
 	 * method. The latter will update the attribute at each change, implying a
 	 * bigger complexity cost, while this method is a one shot call, so you can
@@ -731,7 +731,7 @@ public class ConnectedComponents extends SinkAdapter
 	 * A representation of a connected component. These objects are used to
 	 * store informations about components and to allow to iterate over all
 	 * nodes of a same component.
-	 * 
+	 * <p>
 	 * You can retrieve these objects using the
 	 * {@link ConnectedComponents#getConnectedComponentOf(Node)} methods of the
 	 * algorithm.
@@ -740,7 +740,7 @@ public class ConnectedComponents extends SinkAdapter
 	public class ConnectedComponent implements Structure {
 		/**
 		 * The unique id of this component.
-		 * 
+		 * <p>
 		 * The uniqueness of the id is local to an instance of the
 		 * {@link ConnectedComponents} algorithm.
 		 */
@@ -791,7 +791,7 @@ public class ConnectedComponents extends SinkAdapter
 
 		/**
 		 * Get a set containing all the nodes of this component.
-		 * 
+		 * <p>
 		 * A new set is built for each call to this method, so handle with care.
 		 * 
 		 * @return a new set of nodes belonging to this component
@@ -806,7 +806,7 @@ public class ConnectedComponents extends SinkAdapter
 
 		/**
 		 * Return an stream over the edge of this component.
-		 * 
+		 * <p>
 		 * An edge is in the component if the two ends of this edges are in the
 		 * component and the edge does not have the cut attribute. Note that,
 		 * using cut attribute, some edges can be in none of the components.

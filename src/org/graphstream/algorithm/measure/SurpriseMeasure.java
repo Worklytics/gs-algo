@@ -41,7 +41,7 @@ import org.graphstream.graph.Graph;
 
 /**
  * Surprise measure.
- * 
+ * <p>
  * Description from <a
  * href="https://en.wikipedia.org/wiki/Surprise_(networks)">Wikipedia</a> :
  * Surprise (denoted S) is a measure of community structure in complex networks.

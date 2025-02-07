@@ -135,7 +135,7 @@ public abstract class DecentralizedCommunityAlgorithm implements
 	 * Initialize the distributed community detection algorithm, attaching it to
 	 * the specified graph, and using the default marker to store the community
 	 * attribute.
-	 * 
+	 * <p>
 	 * By default an uncontrolled random number generator will be used. For sake
 	 * of reproducibility, use the {@link #setRandom(Random)} function to use a
 	 * controlled random number generator with this algorithm.
@@ -263,7 +263,7 @@ public abstract class DecentralizedCommunityAlgorithm implements
 
 	/**
 	 * Update the display class of the node based on its current community.
-	 * 
+	 * <p>
 	 * The class name is [marker]_[id] where "marker" is the attribute name used
 	 * to store the current community, and [id] the id of this community.
 	 * 

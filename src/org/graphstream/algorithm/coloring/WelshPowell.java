@@ -85,14 +85,14 @@ import org.graphstream.graph.Node;
  * 
  * 
  * <h2>Example</h2> import java.io.IOException; import java.io.StringReader;
- * 
+ * <p>
  * import org.graphstream.algorithm.coloring.WelshPowell; import
  * org.graphstream.graph.ElementNotFoundException; import
  * org.graphstream.graph.Graph; import org.graphstream.graph.Node; import
  * org.graphstream.graph.implementations.DefaultGraph; import
  * org.graphstream.stream.GraphParseException; import
  * org.graphstream.stream.file.FileSourceDGS;
- * 
+ * <p>
  * public class WelshPowellTest { // B-(1)-C // / \ // (1) (10) // / \ // A F //
  * \ / // (1) (1) // \ / // D-(1)-E static String my_graph = "DGS004\n" +
  * "my 0 0\n" + "an A \n" + "an B \n" + "an C \n" + "an D \n" + "an E \n" +
@@ -102,12 +102,12 @@ import org.graphstream.graph.Node;
  * IOException, ElementNotFoundException, GraphParseException { Graph graph =
  * new DefaultGraph("Welsh Powell Test"); StringReader reader = new
  * StringReader(my_graph);
- * 
+ * <p>
  * FileSourceDGS source = new FileSourceDGS(); source.addSink(graph);
  * source.readAll(reader);
- * 
+ * <p>
  * WelshPowell wp = new WelshPowell("color"); wp.init(graph); wp.compute();
- * 
+ * <p>
  * System.out.println("The chromatic number of this graph is : "+wp.
  * getChromaticNumber()); for(Node n : graph){
  * System.out.println("Node "+n.getId()+ " : color " +n.getAttribute("color"));

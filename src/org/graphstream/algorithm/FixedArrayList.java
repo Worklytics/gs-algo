@@ -291,14 +291,14 @@ public class FixedArrayList<E>
 	
 	/**
 	 * This operation set the i-th cell with the given value.
-	 * 
+	 * <p>
 	 * This works only
 	 * if the cell is empty, or if i is larger or equal to the size of the
 	 * array (if larger, empty cells are added to fill the gap, and free
 	 * indices will be used by the add() method).
-	 * 
+	 * <p>
 	 * If the cell is not empty, the return value is false.
-	 * 
+	 * <p>
 	 * This method is a convenience method, and its complexity is not O(1)
 	 * like the add() and remove() methods. At worse the complexity is O(n).
 	 * It is optimized so that when adding the element whose id is the one

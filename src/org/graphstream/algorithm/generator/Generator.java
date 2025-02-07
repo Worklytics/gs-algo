@@ -76,7 +76,7 @@ public interface Generator extends Source {
 	 * Be careful that some generators never return false here, since they can
 	 * generate graphs of arbitrary size. For such generators, simply stop
 	 * calling this method when enough elements have been generated.
-	 * 
+	 * <p>
 	 * A call to this method can produce an undetermined number of nodes and
 	 * edges. Checking nodes count is advisable when generating the graph to
 	 * avoid an unwanted big graph.

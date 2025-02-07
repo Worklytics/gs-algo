@@ -34,7 +34,7 @@ import java.util.HashSet;
 
 /**
  * Build a graph using a lcf notation.
- * 
+ * <p>
  * Source : <a href="http://en.wikipedia.org/wiki/LCF_notation">Wikipedia</a>
  * 
  */

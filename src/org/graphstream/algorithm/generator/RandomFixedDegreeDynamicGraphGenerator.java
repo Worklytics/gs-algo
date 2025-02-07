@@ -35,7 +35,7 @@ import org.graphstream.algorithm.Toolkit;
 
 /**
  * This is a graph generator that generates dynamic random graphs.
- * 
+ * <p>
  * <u>The principle:</u>
  * 
  * <p>
@@ -87,7 +87,7 @@ import org.graphstream.algorithm.Toolkit;
  * graph given the step and the value of the parameter "Pente". However, as our
  * graph is dynamic, some vertices may be deleted while some other vertices may
  * be added to the graph.
- * 
+ * <p>
  * Question: could it be possible to build a dynamic graph that reaches a stable
  * state (stabilization of the number of vertices, and stabilization of some
  * other properties), just by adding some constraints/characteristics on each

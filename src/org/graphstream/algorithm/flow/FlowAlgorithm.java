@@ -82,7 +82,7 @@ public interface FlowAlgorithm extends Algorithm {
 	 * element is the value of the capacity of (u,v) and second the capacity of
 	 * (v,u). If there is only one value, the value of (v,u) will be zero. If no
 	 * value is available, both capacities will be zero.
-	 * 
+	 * <p>
 	 * If capacity attribute is null, you have to set capacities before calling
 	 * {@link #compute()}.
 	 * 

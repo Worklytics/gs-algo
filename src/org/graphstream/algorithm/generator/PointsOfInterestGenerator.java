@@ -50,11 +50,11 @@ import static java.lang.Math.atan;
  * Generate a <b>social</b> dynamic graph. Graph is composed of high-connected
  * group of nodes, modeling organizations, and few connections between
  * organizations.
- * 
+ * <p>
  * This is done by creating <i>points of interest</i>. Nodes can be interested
  * by these points or loose them interest. When two nodes are interested by at
  * least one common point, then there are connected.
- * 
+ * <p>
  * Some probabilities can be set defining the following events :
  * <ul>
  * <li>remove a node ;</li>

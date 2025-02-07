@@ -184,7 +184,7 @@ public abstract class BaseGenerator extends SourceBase implements Generator {
 	 * End the graph generation by finalizing it. Once the {@link #nextEvents()}
 	 * method returned false (or even if you stop before), this method must be
 	 * called to finish the graph.
-	 * 
+	 * <p>
 	 * In addition, BaseGenerator adds a "clear" operations that removes all the
 	 * kept edges and nodes identifiers and the associated data.
 	 */
@@ -356,7 +356,7 @@ public abstract class BaseGenerator extends SourceBase implements Generator {
 	/**
 	 * Enable or disable the use of an internal graph. If enable, nodes, edges
 	 * and their attributes are stored in an internal graph.
-	 * 
+	 * <p>
 	 * This is useful if the generator needs to remember informations like node
 	 * id.
 	 * 
@@ -501,7 +501,7 @@ public abstract class BaseGenerator extends SourceBase implements Generator {
 
 	/**
 	 * Clear the internal graph if {@link #useInternalGraph} is enable.
-	 * 
+	 * <p>
 	 * This method is called in {@link #end()} to ensure the next generation
 	 * will start freshly anew.
 	 */

@@ -66,9 +66,9 @@ import org.graphstream.graph.Node;
  * The following example generates a graph with the Dorogovtsev-Mendes generator
  * and then computes a spanning-tree using the Kruskal algorithm. The generator
  * creates random weights for edges that will be used by the Kruskal algorithm.
- * 
+ * <p>
  * If no weight is present, algorithm considers that all weights are set to 1.
- * 
+ * <p>
  * When an edge is in the spanning tree, the algorithm will set its "ui.class"
  * attribute to "intree", else the attribute is set to "notintree". According to
  * the css stylesheet that is defined, spanning will be displayed with thick
