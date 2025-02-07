@@ -240,12 +240,7 @@ public class URLGenerator extends BaseGenerator {
 	 * @param regex regex used to filter url
 	 */
 	public void acceptOnlyMatchingURL(final String regex) {
-		URLFilter f = url -> {
-            if (url.matches(regex))
-                return true;
-
-            return false;
-        };
+		URLFilter f = url -> url.matches(regex);
 
 		filters.add(f);
 	}
@@ -257,10 +252,7 @@ public class URLGenerator extends BaseGenerator {
 	 */
 	public void declineMatchingURL(final String regex) {
 		URLFilter f = url -> {
-            if (!url.matches(regex))
-                return true;
-
-            return false;
+            return !url.matches(regex);
         };
 
 		filters.add(f);
