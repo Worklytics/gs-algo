@@ -275,11 +275,7 @@ public class DynamicOneToAllShortestPath extends NetworkSimplex {
 	 * @see #getPathNodesIterator(Node)
 	 */
 	public <T extends Node> Iterable<Node> getPathNodes(final Node target) {
-		return new Iterable<>() {
-            public Iterator<Node> iterator() {
-                return getPathNodesIterator(target);
-            }
-        };
+		return () -> getPathNodesIterator(target);
 	}
 
 	/**
@@ -314,12 +310,7 @@ public class DynamicOneToAllShortestPath extends NetworkSimplex {
 	 * @see #getPathEdgesIterator(Node)
 	 */
 	public <T extends Edge> Iterable<Edge> getPathEdges(final Node target) {
-		return new Iterable<>() {
-            public Iterator<Edge> iterator() {
-                return getPathEdgesIterator(target);
-            }
-
-        };
+		return () -> getPathEdgesIterator(target);
 	}
 
 	/**

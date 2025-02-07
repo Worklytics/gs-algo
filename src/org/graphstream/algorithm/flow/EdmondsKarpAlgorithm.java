@@ -60,7 +60,7 @@ public class EdmondsKarpAlgorithm extends FordFulkersonAlgorithm {
 
 		Q.add(source);
 
-		while (Q.size() > 0) {
+		while (!Q.isEmpty()) {
 			u = Q.pop();
 
 			for (int i = 0; i < u.getDegree(); i++) {

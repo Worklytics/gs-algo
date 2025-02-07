@@ -133,7 +133,7 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 
 		LinkedList<Node> roots = new LinkedList<>(), roots2 = new LinkedList<>();
 
-		if (this.roots.size() > 0) {
+		if (!this.roots.isEmpty()) {
 			for (int i = 0; i < this.roots.size(); i++)
 				roots.add(internalGraph.getNode(this.roots.get(i)));
 		}
@@ -142,7 +142,7 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 		tree.init(internalGraph);
 		tree.compute();
 
-		if (roots.size() == 0) {
+		if (roots.isEmpty()) {
 			int max = internalGraph.getNode(0).getDegree();
 			int maxIndex = 0;
 
@@ -170,7 +170,7 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 		}
 
 		do {
-			while (roots.size() > 0) {
+			while (!roots.isEmpty()) {
 				Node root = roots.poll();
 				int level = levels[root.getIndex()] + 1;
 				Box box = getChildrenBox(root);
@@ -192,7 +192,7 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 
 			roots.addAll(roots2);
 			roots2.clear();
-		} while (roots.size() > 0);
+		} while (!roots.isEmpty());
 
 		FibonacciHeap<Integer, Box> boxes = new FibonacciHeap<>();
 		boxes.add(0, rootBox);
@@ -213,7 +213,7 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 		for (int i = 0; i < levelBoxes.size(); i++)
 			levelBoxes.get(i).sort();
 
-		while (boxes.size() > 0)
+		while (!boxes.isEmpty())
 			renderBox(boxes.extractMin());
 
 		hi.x = hi.y = Double.MIN_VALUE;
@@ -263,7 +263,7 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 	}
 
 	protected void renderBox(Box box) {
-		if (box.size() == 0)
+		if (box.isEmpty())
 			return;
 
 		for (int i = 0; i < box.size(); i++) {
@@ -630,18 +630,16 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 
 		void sort() {
 			if (level > 0) {
-				Collections.sort(this, new Comparator<>() {
-                    public int compare(Box b0, Box b1) {
-                        Box pb0 = getBox(b0.parent);
-                        Box pb1 = getBox(b1.parent);
+				Collections.sort(this, (b0, b1) -> {
+                    Box pb0 = getBox(b0.parent);
+                    Box pb1 = getBox(b1.parent);
 
-                        if (pb0.order < pb1.order)
-                            return -1;
-                        else if (pb0.order > pb1.order)
-                            return 1;
+                    if (pb0.order < pb1.order)
+                        return -1;
+                    else if (pb0.order > pb1.order)
+                        return 1;
 
-                        return 0;
-                    }
+                    return 0;
                 });
 			}
 

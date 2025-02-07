@@ -190,11 +190,11 @@ public class ConnectivityMeasure {
 			for (int j = 0; j < k; j++)
 				removed.add(karray.get(j));
 
-			for (int j = 0; toVisit.size() == 0; j++)
+			for (int j = 0; toVisit.isEmpty(); j++)
 				if (!removed.contains(j))
 					toVisit.add(j);
 
-			while (toVisit.size() > 0) {
+			while (!toVisit.isEmpty()) {
 				Node n = g.getNode(toVisit.poll());
 				visited[n.getIndex()] = true;
 				
@@ -272,7 +272,7 @@ public class ConnectivityMeasure {
 
 			toVisit.add(0);
 
-			while (toVisit.size() > 0) {
+			while (!toVisit.isEmpty()) {
 				Node n = g.getNode(toVisit.poll());
 				
 				visited[n.getIndex()] = true;

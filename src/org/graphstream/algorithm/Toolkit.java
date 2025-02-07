@@ -415,11 +415,7 @@ public class Toolkit extends
 			map.add(node);
 		});
 
-		Collections.sort(map, new Comparator<>() {
-            public int compare(Node a, Node b) {
-                return b.getDegree() - a.getDegree();
-            }
-        });
+		Collections.sort(map, (a, b) -> b.getDegree() - a.getDegree());
 
 		return map;
 	}
@@ -1298,12 +1294,7 @@ public class Toolkit extends
 	 */
 	public static <T extends Node> Iterable<List<T>> getMaximalCliques(
 			final Graph graph) {
-		return new Iterable<>() {
-            public Iterator<List<T>> iterator() {
-                return getMaximalCliqueIterator(graph);
-            }
-
-        };
+		return () -> getMaximalCliqueIterator(graph);
 	}
 
 	protected static class StackElement<T extends Node> {

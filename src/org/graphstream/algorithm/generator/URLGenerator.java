@@ -150,7 +150,7 @@ public class URLGenerator extends BaseGenerator {
 		stepUrls.addAll(newUrls);
 		step++;
 		
-		return newUrls.size() > 0;
+		return !newUrls.isEmpty();
 	}
 
 	/**
@@ -240,14 +240,12 @@ public class URLGenerator extends BaseGenerator {
 	 * @param regex regex used to filter url
 	 */
 	public void acceptOnlyMatchingURL(final String regex) {
-		URLFilter f = new URLFilter() {
-			public boolean accept(String url) {
-				if (url.matches(regex))
-					return true;
+		URLFilter f = url -> {
+            if (url.matches(regex))
+                return true;
 
-				return false;
-			}
-		};
+            return false;
+        };
 
 		filters.add(f);
 	}
@@ -258,14 +256,12 @@ public class URLGenerator extends BaseGenerator {
 	 * @param regex regex used to filter url
 	 */
 	public void declineMatchingURL(final String regex) {
-		URLFilter f = new URLFilter() {
-			public boolean accept(String url) {
-				if (!url.matches(regex))
-					return true;
+		URLFilter f = url -> {
+            if (!url.matches(regex))
+                return true;
 
-				return false;
-			}
-		};
+            return false;
+        };
 
 		filters.add(f);
 	}
@@ -391,7 +387,7 @@ public class URLGenerator extends BaseGenerator {
 			while (m.find()) {
 				String href = m.group(1);
 
-				if (href == null || href.length() == 0)
+				if (href == null || href.isEmpty())
 					continue;
 
 				href = href.trim();

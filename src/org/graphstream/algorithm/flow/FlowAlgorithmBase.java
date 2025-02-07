@@ -401,7 +401,7 @@ public abstract class FlowAlgorithmBase implements FlowAlgorithm {
 				List<? extends Number> capVect = flowGraph.getEdge(i)
 						.getVector(capacityAttribute);
 
-				if (capVect.size() > 0)
+				if (!capVect.isEmpty())
 					capacities[i] = capVect.get(0).doubleValue();
 				if (capVect.size() > 1)
 					capacities[i + n] = capVect.get(1).doubleValue();

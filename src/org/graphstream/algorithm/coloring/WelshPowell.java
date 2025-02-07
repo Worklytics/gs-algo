@@ -270,7 +270,7 @@ public class WelshPowell implements Algorithm {
 
 		// ------- STEP 3 --------
 
-		while (sortedNodes.size() > 0) {
+		while (!sortedNodes.isEmpty()) {
 			Node root = sortedNodes.poll();
 			LinkedList<Node> myGroup = new LinkedList<>();
 			myGroup.add(root);

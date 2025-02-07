@@ -605,13 +605,11 @@ public class RandomWalk extends SinkAdapter implements DynamicAlgorithm {
 		
 		context.graph.edges().forEach(e -> edges.add(e));
 		
-		Collections.sort(edges, new Comparator<>() {
-            public int compare(Edge e1, Edge e2) {
-                int n1 = (int) e1.getNumber(context.passesAttribute);
-                int n2 = (int) e2.getNumber(context.passesAttribute);
+		Collections.sort(edges, (e1, e2) -> {
+            int n1 = (int) e1.getNumber(context.passesAttribute);
+            int n2 = (int) e2.getNumber(context.passesAttribute);
 
-                return (n1 - n2);
-            }
+            return (n1 - n2);
         });
 
 		return edges;
@@ -629,13 +627,11 @@ public class RandomWalk extends SinkAdapter implements DynamicAlgorithm {
 				
 		context.graph.nodes().forEach(n -> nodes.add(n));
 
-		Collections.sort(nodes, new Comparator<>() {
-            public int compare(Node e1, Node e2) {
-                int n1 = (int) e1.getNumber(context.passesAttribute);
-                int n2 = (int) e2.getNumber(context.passesAttribute);
+		Collections.sort(nodes, (e1, e2) -> {
+            int n1 = (int) e1.getNumber(context.passesAttribute);
+            int n2 = (int) e2.getNumber(context.passesAttribute);
 
-                return (n1 - n2);
-            }
+            return (n1 - n2);
         });
 
 		return nodes;

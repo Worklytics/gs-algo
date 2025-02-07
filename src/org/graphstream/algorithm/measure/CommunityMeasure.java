@@ -296,7 +296,7 @@ public abstract class CommunityMeasure extends SinkAdapter implements
 
 			if (community != null) {
 				community.remove(node);
-				if (community.size() == 0) {
+				if (community.isEmpty()) {
 					assignment.remove(communityKey);
 				}
 			}

@@ -498,7 +498,7 @@ public class PointsOfInterestGenerator extends BaseGenerator {
 	}
 
 	protected void killAddict(Addict a) {
-		while (a.pointsOfInterest.size() > 0)
+		while (!a.pointsOfInterest.isEmpty())
 			a.pointsOfInterest.peek().delAddict(a);
 
 		a.fullUnlink();

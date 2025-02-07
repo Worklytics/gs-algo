@@ -73,11 +73,7 @@ public class DStar implements DynamicAlgorithm, Sink {
 	protected LinkedList<State> openList;
 	protected Graph env;
 
-	protected final Comparator<State> stateComparator = new Comparator<>() {
-        public int compare(State o1, State o2) {
-            return (int) Math.signum(k(o1) - k(o2));
-        }
-    };
+	protected final Comparator<State> stateComparator = (o1, o2) -> (int) Math.signum(k(o1) - k(o2));
 
 	public DStar() {
 		edgeWeightAttribute = "weight";
