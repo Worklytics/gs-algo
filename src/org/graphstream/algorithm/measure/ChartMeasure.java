@@ -36,7 +36,7 @@ import java.io.IOException;
 import javax.swing.JFrame;
 
 import org.jfree.chart.ChartPanel;
-import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 
@@ -264,7 +264,7 @@ public abstract class ChartMeasure {
 			break;
 		case JPEG:
 			try {
-				ChartUtilities.saveChartAsJPEG(new File(params.path), chart,
+				ChartUtils.saveChartAsJPEG(new File(params.path), chart,
 						params.width, params.height);
 			} catch (IOException e) {
 				throw new PlotException(e);
@@ -273,7 +273,7 @@ public abstract class ChartMeasure {
 			break;
 		case PNG:
 			try {
-				ChartUtilities.saveChartAsPNG(new File(params.path), chart,
+				ChartUtils.saveChartAsPNG(new File(params.path), chart,
 						params.width, params.height);
 			} catch (IOException e) {
 				throw new PlotException(e);
