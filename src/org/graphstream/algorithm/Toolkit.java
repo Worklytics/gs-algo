@@ -268,7 +268,7 @@ public class Toolkit extends
 	 * @return The weighted degree. 
 	 */
 	public static double weightedDegree(Node node, String weightAttribute, double defaultWeightValue) {
-		DoubleAccumulator wdegree = new DoubleAccumulator((x, y) -> x + y, 0);
+		DoubleAccumulator wdegree = new DoubleAccumulator(Double::sum, 0);
 		
 		node.edges().forEach(edge -> {
 			if(edge.hasNumber(weightAttribute)) {
@@ -313,7 +313,7 @@ public class Toolkit extends
 	 * @return The entering weighted degree.
 	 */
 	public static double enteringWeightedDegree(Node node, String weightAttribute, double defaultWeightValue) {
-		DoubleAccumulator wdegree = new DoubleAccumulator((x, y) -> x + y, 0);
+		DoubleAccumulator wdegree = new DoubleAccumulator(Double::sum, 0);
 		
 		node.enteringEdges().forEach(edge -> {
 			if(edge.hasNumber(weightAttribute)) {
@@ -355,7 +355,7 @@ public class Toolkit extends
 	 * @return The leaving weighted degree.
 	 */
 	public static double leavingWeightedDegree(Node node, String weightAttribute, double defaultWeightValue) {
-		DoubleAccumulator wdegree = new DoubleAccumulator((x, y) -> x + y, 0);
+		DoubleAccumulator wdegree = new DoubleAccumulator(Double::sum, 0);
 		
 		node.leavingEdges().forEach(edge -> {
 			if(edge.hasNumber(weightAttribute)) {
@@ -385,8 +385,8 @@ public class Toolkit extends
 		int[] dd;
 		
 		max = graph.nodes()
-				.map(n -> n.getDegree())
-				.max((n1, n2) -> Integer.compare(n1, n2))
+				.map(Node::getDegree)
+				.max(Integer::compare)
 				.get();
 
 
@@ -411,9 +411,7 @@ public class Toolkit extends
 	public static ArrayList<Node> degreeMap(Graph graph) {
 		ArrayList<Node> map = new ArrayList<>();
 
-		graph.nodes().forEach(node -> {
-			map.add(node);
-		});
+		graph.nodes().forEach(map::add);
 
 		Collections.sort(map, (a, b) -> b.getDegree() - a.getDegree());
 
@@ -433,9 +431,7 @@ public class Toolkit extends
 	public static ArrayList<Node> weightedDegreeMap(Graph graph, String weightAttribute, double defaultWeightValue) {
 		ArrayList<Node> map = new ArrayList<>();
 
-		graph.nodes().forEach(node -> {
-			map.add(node);
-		});
+		graph.nodes().forEach(map::add);
 
 		Collections.sort(map, new WeightComparator(weightAttribute, defaultWeightValue));
 
@@ -499,7 +495,7 @@ public class Toolkit extends
 	 */
 	public static double degreeAverageDeviation(Graph graph) {
 		double average = averageDegree(graph);
-		DoubleAccumulator sum = new DoubleAccumulator((x, y) -> x + y, 0);
+		DoubleAccumulator sum = new DoubleAccumulator(Double::sum, 0);
 
 		graph.nodes().forEach(node -> {
 			double d = node.getDegree() - average;
@@ -564,7 +560,7 @@ public class Toolkit extends
 		int n = graph.getNodeCount();
 		
 		if (n > 0) {
-			DoubleAccumulator cc = new DoubleAccumulator((x, y) -> x + y, 0);
+			DoubleAccumulator cc = new DoubleAccumulator(Double::sum, 0);
 
 			graph.nodes().forEach(node -> cc.accumulate(clusteringCoefficient(node)));
 			
@@ -878,7 +874,7 @@ public class Toolkit extends
 	public static double[][] modularityMatrix(Graph graph,
 		HashMap<Object, HashSet<Node>> communities, String weightMarker) {
 
-		DoubleAccumulator edgeCount = new DoubleAccumulator((x, y) -> x + y, 0);
+		DoubleAccumulator edgeCount = new DoubleAccumulator(Double::sum, 0);
 		
 		if (weightMarker == null) {
 			edgeCount.accumulate(graph.getEdgeCount());
@@ -1040,7 +1036,7 @@ public class Toolkit extends
 			HashSet<Node> otherCommunity, String weightMarker) {
 		HashSet<Edge> marked = new HashSet<>();
 
-		DoubleAccumulator edgeCount = new DoubleAccumulator((x, y) -> x + y, 0);
+		DoubleAccumulator edgeCount = new DoubleAccumulator(Double::sum, 0);
 
 		if (community != otherCommunity) {
 			// Count edges between the two communities
@@ -1274,7 +1270,7 @@ public class Toolkit extends
 	 */
 	public static <T extends Node> Iterator<List<T>> getMaximalCliqueIterator(Graph graph) {
 		graph.edges()
-			.filter(e -> e.isLoop())
+			.filter(Edge::isLoop)
 			.forEach(e -> illegalArgumentException());
 				
 		return new BronKerboschIterator<>(graph);

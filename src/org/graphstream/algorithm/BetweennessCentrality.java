@@ -342,7 +342,7 @@ public class BetweennessCentrality implements Algorithm {
 		initAllEdges(graph);
 
 		float n = graph.getNodeCount();
-		DoubleAccumulator i = new DoubleAccumulator((x, y) -> x + y, 0);
+		DoubleAccumulator i = new DoubleAccumulator(Double::sum, 0);
 		
 		graph.nodes().forEach(s -> {
 			PriorityQueue<Node> S = null;

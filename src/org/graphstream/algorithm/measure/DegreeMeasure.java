@@ -70,7 +70,7 @@ public class DegreeMeasure extends ChartMinMaxAverageSeriesMeasure implements
 		
 		min = new DoubleAccumulator((x,y) -> y, Double.MAX_VALUE);
 		max = new DoubleAccumulator((x,y) -> y, Double.MIN_VALUE);
-		avg = new DoubleAccumulator((x,y) -> x + y, 0);
+		avg = new DoubleAccumulator(Double::sum, 0);
 		
 		g.nodes().forEach(n -> {
 			min.accumulate(Math.min(min.get(), n.getDegree()));

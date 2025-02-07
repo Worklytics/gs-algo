@@ -799,7 +799,7 @@ public class ConnectedComponents extends SinkAdapter
 		public Set<Node> getNodeSet() {
 			HashSet<Node> nodes = new HashSet<>();
 			
-			nodes().forEach(n -> nodes.add(n));
+			nodes().forEach(nodes::add);
 			
 			return nodes;
 		}

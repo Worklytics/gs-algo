@@ -361,7 +361,7 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 			nodes.put(copy.id, copy);
 		}
 
-		DoubleAccumulator arcCount = new DoubleAccumulator((x, y) -> x + y, graph.getEdgeCount()) ;
+		DoubleAccumulator arcCount = new DoubleAccumulator(Double::sum, graph.getEdgeCount()) ;
 		
 		graph.edges()
 			.filter(edge -> !edge.isDirected())
@@ -405,7 +405,7 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 
 		objectiveValue.set(0);
 
-		nodes.values().forEach(node -> node.createArtificialArc());
+		nodes.values().forEach(NSNode::createArtificialArc);
 		solutionStatus = SolutionStatus.UNDEFINED;
 	}
 

@@ -556,7 +556,7 @@ public class RandomWalk extends SinkAdapter implements DynamicAlgorithm {
 		context.goCount = 0;
 		context.waitCount = 0;
 
-		entities.forEach(entity -> entity.step());
+		entities.forEach(Entity::step);
 
 		if(evaporation<1)
 			evaporate();
@@ -601,7 +601,7 @@ public class RandomWalk extends SinkAdapter implements DynamicAlgorithm {
 	public ArrayList<Edge> findTheMostUsedEdges() {
 		ArrayList<Edge> edges = new ArrayList<>(context.graph.getEdgeCount());
 		
-		context.graph.edges().forEach(e -> edges.add(e));
+		context.graph.edges().forEach(edges::add);
 		
 		Collections.sort(edges, (e1, e2) -> {
             int n1 = (int) e1.getNumber(context.passesAttribute);
@@ -623,7 +623,7 @@ public class RandomWalk extends SinkAdapter implements DynamicAlgorithm {
 	public ArrayList<Node> findTheMostUsedNodes() {
 		ArrayList<Node> nodes = new ArrayList<>(context.graph.getNodeCount());
 				
-		context.graph.nodes().forEach(n -> nodes.add(n));
+		context.graph.nodes().forEach(nodes::add);
 
 		Collections.sort(nodes, (e1, e2) -> {
             int n1 = (int) e1.getNumber(context.passesAttribute);

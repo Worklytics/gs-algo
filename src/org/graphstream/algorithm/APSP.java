@@ -428,7 +428,7 @@ public class APSP extends SinkAdapter implements Algorithm {
 			// The Floyd-Warshall algorithm. You can easily see it is in O(n^3)..
 
 			// int z = 0;
-			DoubleAccumulator prog = new DoubleAccumulator((x, y) -> x + y, 0);
+			DoubleAccumulator prog = new DoubleAccumulator(Double::sum, 0);
 			final double MAX  = nodeList.size() * nodeList.size();
 			
 			nodeList.stream().forEach(k -> {

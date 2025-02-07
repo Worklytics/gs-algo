@@ -805,7 +805,7 @@ public class Dijkstra extends AbstractSpanningTree {
 			return path;
 		Stack<Edge> stack = new Stack<>();
 		
-		getPathEdges(target).forEach(e -> stack.push(e));
+		getPathEdges(target).forEach(stack::push);
 			
 		path.setRoot(source);
 		while (!stack.isEmpty())

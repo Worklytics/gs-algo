@@ -216,7 +216,7 @@ public class Leung extends EpidemicCommunityAlgorithm {
 					.filter(e -> e.getOpposite(node).hasAttribute(marker)
 							&& e.getOpposite(node).getAttribute(marker).equals(node.getAttribute(marker)))
 					.map(e -> (Double) e.getOpposite(node).getAttribute(marker + ".score"))
-					.max((e1, e2) -> Double.compare(e1, e2))
+					.max(Double::compare)
 					.get();
 			
 			/*// With Iterator

@@ -233,7 +233,7 @@ public class Centroid implements Algorithm {
 		HashSet<Node> centroid = new HashSet<>();
 		
 		graph.nodes().forEach(node -> {
-			DoubleAccumulator m = new DoubleAccumulator((x, y) -> x + y, 0);
+			DoubleAccumulator m = new DoubleAccumulator(Double::sum, 0);
 			APSP.APSPInfo info = (APSPInfo) node.getAttribute(apspInfoAttribute);
 
 			if (info == null)

@@ -264,7 +264,7 @@ public abstract class AbstractSpanningTree implements SpanningTree {
 	 * tree.
 	 */
 	protected void resetFlags() {
-		graph.edges().forEach(edge -> edgeOff(edge));
+		graph.edges().forEach(this::edgeOff);
 		/*for (Edge edge : graph.getEachEdge())
 			edgeOff(edge);*/
 	}

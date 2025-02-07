@@ -32,6 +32,7 @@
 package org.graphstream.algorithm.util;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * <p>
@@ -329,7 +330,7 @@ public class FibonacciHeap<K extends Comparable<K>, V> {
 		min = null;
 		
 		degList.stream()
-			.filter(s -> s != null)
+			.filter(Objects::nonNull)
 			.forEach(s -> {
 				s.left = s.right = s;
 				if (min == null)

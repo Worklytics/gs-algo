@@ -148,7 +148,7 @@ public class TarjanStronglyConnectedComponents implements Algorithm {
 		
 		graph.nodes()
 			.filter(v -> !data.containsKey(v))
-			.forEach(v -> strongConnect(v));
+			.forEach(this::strongConnect);
 		
 	}
 

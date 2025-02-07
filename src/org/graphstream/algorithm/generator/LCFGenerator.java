@@ -157,7 +157,7 @@ public class LCFGenerator extends BaseGenerator {
 
 		crossed.stream()
 			.filter(edge -> !added.contains(edge))
-			.forEach(edge -> delEdge(edge));
+			.forEach(this::delEdge);
 
 		crossed.clear();
 		crossed = added;

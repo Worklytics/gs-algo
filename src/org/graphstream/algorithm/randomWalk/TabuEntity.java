@@ -95,7 +95,7 @@ public class TabuEntity extends Entity {
 		
 		current.leavingEdges()
 			.filter(e -> !tabu(e.getOpposite(current)))
-			.forEach(e -> edges.add(e));
+			.forEach(edges::add);
 
 		n = edges.size();
 

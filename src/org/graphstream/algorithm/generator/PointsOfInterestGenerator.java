@@ -96,7 +96,7 @@ public class PointsOfInterestGenerator extends BaseGenerator {
 		 */
 		void newAddict(Addict addictA) {
 			if (!addict.contains(addictA)) {
-				addict.forEach(addictB -> addictA.link(addictB));
+				addict.forEach(addictA::link);
 
 				addict.add(addictA);
 				addictA.pointsOfInterest.add(this);
@@ -116,7 +116,7 @@ public class PointsOfInterestGenerator extends BaseGenerator {
 				addict.remove(addictA);
 				addictA.pointsOfInterest.remove(this);
 
-				addict.forEach(addictB -> addictA.unlink(addictB));
+				addict.forEach(addictA::unlink);
 			}
 		}
 
@@ -483,7 +483,7 @@ public class PointsOfInterestGenerator extends BaseGenerator {
 	protected void removePointOfInterest(PointOfInterest poi) {
 		pointsOfInterest.remove(poi);
 
-		poi.addict.forEach(a -> poi.delAddict(a));
+		poi.addict.forEach(poi::delAddict);
 	}
 
 	protected void removeRandomPointOfInterest() {
