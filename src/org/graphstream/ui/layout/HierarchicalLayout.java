@@ -100,8 +100,7 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 		roots.clear();
 
 		if (rootsId != null) {
-			for (String id : rootsId)
-				roots.add(id);
+            roots.addAll(Arrays.asList(rootsId));
 		}
 	}
 
