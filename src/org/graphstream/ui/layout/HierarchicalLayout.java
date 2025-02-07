@@ -45,7 +45,6 @@ import org.graphstream.ui.view.Viewer;
 import java.io.IOException;
 import java.io.Serial;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -248,13 +247,11 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 	}
 
 	protected static Box getBox(Node node) {
-		Box box = (Box) node.getAttribute("box");
-		return box;
+        return (Box) node.getAttribute("box");
 	}
 
 	protected static Box getChildrenBox(Node node) {
-		Box box = (Box) node.getAttribute("children");
-		return box;
+        return (Box) node.getAttribute("children");
 	}
 
 	protected void renderBox(Box box) {
@@ -283,17 +280,16 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 		if (box.parent != null) {
 			Box parentBox = getBox(box.parent);
 
-			switch (renderingType) {
-			case VERTICAL:
-				sx = 1 / (double) parentBox.size();
-				sy = 1 / Math.pow(2, box.level);
-				break;
-			case DISK:
-			case HORIZONTAL:
-				sx = 1 / Math.pow(2, box.level);
-				sy = 1 / (double) parentBox.size();
-				break;
-			}
+            sy = switch (renderingType) {
+                case VERTICAL -> {
+                    sx = 1 / (double) parentBox.size();
+                    yield 1 / Math.pow(2, box.level);
+                }
+                case DISK, HORIZONTAL -> {
+                    sx = 1 / Math.pow(2, box.level);
+                    yield 1 / (double) parentBox.size();
+                }
+            };
 		}
 
 		box.scale(sx, sy);
@@ -627,7 +623,7 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 
 		void sort() {
 			if (level > 0) {
-				Collections.sort(this, (b0, b1) -> {
+				this.sort((b0, b1) -> {
                     Box pb0 = getBox(b0.parent);
                     Box pb1 = getBox(b1.parent);
 

@@ -30,7 +30,6 @@
 package org.graphstream.algorithm.measure.test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import org.graphstream.algorithm.measure.MaxSimultaneousEdgeCount;
 import org.graphstream.algorithm.measure.MaxSimultaneousNodeCount;
