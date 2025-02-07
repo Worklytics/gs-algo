@@ -56,7 +56,7 @@ import org.graphstream.graph.Node;
  */
 public class URLGenerator extends BaseGenerator {
 
-	public static enum Mode {
+	public enum Mode {
 		HOST, PATH, FULL
 	}
 
@@ -577,7 +577,7 @@ public class URLGenerator extends BaseGenerator {
 	/**
 	 * Defines url filter.
 	 */
-	public static interface URLFilter {
+	public interface URLFilter {
 		/**
 		 * Called by the generator to know if the specified url can be accepted
 		 * by this filter. If a filter return false, then the url is discarded.

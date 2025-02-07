@@ -171,7 +171,7 @@ public class Dijkstra extends AbstractSpanningTree {
 	 * 
 	 * @author Stefan Balev
 	 */
-	public static enum Element {
+	public enum Element {
 		/**
 		 * The length of a path is the sum of the lengths of its edges.
 		 */

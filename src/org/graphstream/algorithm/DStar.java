@@ -60,7 +60,7 @@ import org.graphstream.stream.Sink;
  */
 public class DStar implements DynamicAlgorithm, Sink {
 
-	protected static enum Tag {
+	protected enum Tag {
 		NEW, OPEN, CLOSED, LOWER, RAISE
 	}
 

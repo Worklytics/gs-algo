@@ -238,7 +238,7 @@ public class TarjanStronglyConnectedComponents implements Algorithm {
 	/**
 	 * Defines objects able to generator index.
 	 */
-	public static interface IndexGenerator {
+	public interface IndexGenerator {
 		/**
 		 * Create a new index.
 		 * 

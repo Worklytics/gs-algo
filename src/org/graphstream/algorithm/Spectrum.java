@@ -43,7 +43,7 @@ import org.graphstream.graph.implementations.AdjacencyListGraph;
 
 public class Spectrum implements Algorithm {
 
-	public static enum EigenValuesAlgorithm {
+	public enum EigenValuesAlgorithm {
 		POWER_ITERATION, INVERSE_ITERATION
 	}
 

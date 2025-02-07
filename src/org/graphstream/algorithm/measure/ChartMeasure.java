@@ -48,7 +48,7 @@ public abstract class ChartMeasure {
 	/**
 	 * Type of plot.s
 	 */
-	public static enum PlotType {
+	public enum PlotType {
 		/**
 		 * Points connected with lines.
 		 */
@@ -70,7 +70,7 @@ public abstract class ChartMeasure {
 	/**
 	 * Defines the support used for rendering : on screen or in a file.
 	 */
-	public static enum PlotOutputType {
+	public enum PlotOutputType {
 		SCREEN, PNG, JPEG
 	}
 

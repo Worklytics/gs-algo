@@ -39,7 +39,7 @@ public class AlgorithmComputationTrigger extends SinkAdapter {
 	/**
 	 * Defines when the computation is triggered.
 	 */
-	public static enum Mode {
+	public enum Mode {
 		BY_STEP
 	}
 

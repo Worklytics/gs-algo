@@ -145,7 +145,7 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 	 * Pricing strategy used at each iteration of the algorithm. Only two simple
 	 * strategies are implemented for the moment, more are to come.
 	 */
-	public static enum PricingStrategy {
+	public enum PricingStrategy {
 		/**
 		 * When using this strategy an iteration is faster, but the number of
 		 * iterations is generally bigger
@@ -162,7 +162,7 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 	/**
 	 * The status of the current solution.
 	 */
-	public static enum SolutionStatus {
+	public enum SolutionStatus {
 		/**
 		 * The current solution is outdated. This is the value when the graph
 		 * has changed since the last call of {@link NetworkSimplex#compute()}
@@ -1473,7 +1473,7 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 	/**
 	 * Arc status
 	 */
-	public static enum ArcStatus {
+	public enum ArcStatus {
 		/**
 		 * Basic arc
 		 */

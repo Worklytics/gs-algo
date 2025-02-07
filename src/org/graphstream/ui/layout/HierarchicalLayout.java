@@ -51,7 +51,7 @@ import org.graphstream.ui.view.Viewer;
 
 public class HierarchicalLayout extends PipeBase implements Layout {
 
-	public static enum Rendering {
+	public enum Rendering {
 		VERTICAL, HORIZONTAL, DISK
 	}
 
