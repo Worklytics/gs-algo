@@ -186,7 +186,7 @@ public abstract class DecentralizedCommunityAlgorithm implements
 		} else {
 			this.nonUniqueMarker = marker;
 		}
-		this.marker = this.toString() + "." + nonUniqueMarker;
+		this.marker = this + "." + nonUniqueMarker;
 	}
 
 	/**

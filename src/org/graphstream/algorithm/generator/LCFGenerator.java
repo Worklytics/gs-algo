@@ -60,7 +60,7 @@ public class LCFGenerator extends BaseGenerator {
 	}
 
 	private int n;
-	private int initialRingSize;
+	private final int initialRingSize;
 	private HashSet<String> crossed;
 	protected LCF lcf;
 	protected boolean canBeExtended;

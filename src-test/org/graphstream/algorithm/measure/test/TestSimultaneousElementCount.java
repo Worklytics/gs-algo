@@ -29,6 +29,7 @@
  */
 package org.graphstream.algorithm.measure.test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.graphstream.algorithm.measure.MaxSimultaneousEdgeCount;
@@ -50,18 +51,18 @@ public class TestSimultaneousElementCount {
 			g.addNode(String.format("n%03x", id++));
 		
 		System.out.printf("max node : %d\n", count.getMaxSimultaneousNodeCount());
-		
-		assertTrue(count.getMaxSimultaneousNodeCount() == 100);
+
+        assertEquals(100, count.getMaxSimultaneousNodeCount());
 		
 		for (int i = 0; i < 20; i++)
 			g.removeNode(String.format("n%03x", i));
-		
-		assertTrue(count.getMaxSimultaneousNodeCount() == 100);
+
+        assertEquals(100, count.getMaxSimultaneousNodeCount());
 		
 		for (int i = 0; i < 40; i++)
 			g.addNode(String.format("n%03x", id++));
-		
-		assertTrue(count.getMaxSimultaneousNodeCount() == 120);
+
+        assertEquals(120, count.getMaxSimultaneousNodeCount());
 	}
 	
 	@Test
@@ -82,13 +83,13 @@ public class TestSimultaneousElementCount {
 			g.addNode(id2);
 			g.addEdge(String.format("e%03x", id++), id1, id2); 
 		}
-		
-		assertTrue(count.getMaxSimultaneousEdgeCount() == 100);
+
+        assertEquals(100, count.getMaxSimultaneousEdgeCount());
 		
 		for (int i = 0; i < 20; i++)
 			g.removeEdge(String.format("e%03x", i));
-		
-		assertTrue(count.getMaxSimultaneousEdgeCount() == 100);
+
+        assertEquals(100, count.getMaxSimultaneousEdgeCount());
 		
 		for (int i = 0; i < 40; i++) {
 			String id1, id2;
@@ -101,6 +102,6 @@ public class TestSimultaneousElementCount {
 			g.addEdge(String.format("e%03x", id++), id1, id2);
 		}
 
-		assertTrue(count.getMaxSimultaneousEdgeCount() == 120);
+        assertEquals(120, count.getMaxSimultaneousEdgeCount());
 	}
 }

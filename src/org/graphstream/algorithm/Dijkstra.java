@@ -184,8 +184,8 @@ public class Dijkstra extends AbstractSpanningTree {
 		 * The length of a path is the sum of the lengths of its edges and
 		 * nodes.
 		 */
-		EDGE_AND_NODE;
-	}
+		EDGE_AND_NODE
+    }
 
 	protected Element element;
 	protected String resultAttribute;
@@ -275,7 +275,7 @@ public class Dijkstra extends AbstractSpanningTree {
 	public Dijkstra(Element element, String resultAttribute, String lengthAttribute, String flagAttribute, Object flagOn, Object flagOff) {
 		super(flagAttribute, flagOn, flagOff);
 		this.element = element == null ? Element.EDGE : element;
-		this.resultAttribute = resultAttribute == null ? toString()
+		this.resultAttribute = resultAttribute == null ? this
 				+ "_result_" : resultAttribute;
 		this.lengthAttribute = lengthAttribute;
 		graph = null;

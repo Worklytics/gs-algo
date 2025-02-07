@@ -43,7 +43,7 @@ public class DegreeMeasure extends ChartMinMaxAverageSeriesMeasure implements
 	 * Graph being used to compute the measure or null.
 	 */
 	protected Graph g;
-	private Sink trigger;
+	private final Sink trigger;
 
 	public DegreeMeasure() {
 		super("Degree");

@@ -29,9 +29,6 @@
  */
 package org.graphstream.algorithm.measure.test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -40,6 +37,8 @@ import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.AdjacencyListGraph;
 import org.graphstream.stream.file.FileSourceDGS;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class TestConnectivityMeasure {
 	Graph g;
@@ -81,7 +80,7 @@ public class TestConnectivityMeasure {
 		assertTrue(ConnectivityMeasure.isKVertexConnected(g, 4));
 		assertTrue(ConnectivityMeasure.isKVertexConnected(g, 5));
 		assertFalse(ConnectivityMeasure.isKVertexConnected(g, 6));
-		assertTrue(ConnectivityMeasure.getVertexConnectivity(g) == 5);
+        assertEquals(5, ConnectivityMeasure.getVertexConnectivity(g));
 
 		/*
 		 * Step 2, graph should be 1-connected.
@@ -90,7 +89,7 @@ public class TestConnectivityMeasure {
 
 		assertTrue(ConnectivityMeasure.isKVertexConnected(g, 1));
 		assertFalse(ConnectivityMeasure.isKVertexConnected(g, 2));
-		assertTrue(ConnectivityMeasure.getVertexConnectivity(g) == 1);
+        assertEquals(1, ConnectivityMeasure.getVertexConnectivity(g));
 
 		/*
 		 * Step 3, graph should be 2-connected.
@@ -100,7 +99,7 @@ public class TestConnectivityMeasure {
 		assertTrue(ConnectivityMeasure.isKVertexConnected(g, 1));
 		assertTrue(ConnectivityMeasure.isKVertexConnected(g, 2));
 		assertFalse(ConnectivityMeasure.isKVertexConnected(g, 3));
-		assertTrue(ConnectivityMeasure.getVertexConnectivity(g) == 2);
+        assertEquals(2, ConnectivityMeasure.getVertexConnectivity(g));
 
 		end();
 	}
@@ -119,7 +118,7 @@ public class TestConnectivityMeasure {
 		assertTrue(ConnectivityMeasure.isKEdgeConnected(g, 3));
 		assertTrue(ConnectivityMeasure.isKEdgeConnected(g, 4));
 		assertFalse(ConnectivityMeasure.isKEdgeConnected(g, 5));
-		assertTrue(ConnectivityMeasure.getEdgeConnectivity(g) == 4);
+        assertEquals(4, ConnectivityMeasure.getEdgeConnectivity(g));
 
 		/*
 		 * Step 2, graph should be 1-edge-connected.
@@ -128,7 +127,7 @@ public class TestConnectivityMeasure {
 
 		assertTrue(ConnectivityMeasure.isKEdgeConnected(g, 1));
 		assertFalse(ConnectivityMeasure.isKEdgeConnected(g, 2));
-		assertTrue(ConnectivityMeasure.getEdgeConnectivity(g) == 1);
+        assertEquals(1, ConnectivityMeasure.getEdgeConnectivity(g));
 
 		/*
 		 * Step 3, graph should be 2-edge-connected.
@@ -138,7 +137,7 @@ public class TestConnectivityMeasure {
 		assertTrue(ConnectivityMeasure.isKEdgeConnected(g, 1));
 		assertTrue(ConnectivityMeasure.isKEdgeConnected(g, 2));
 		assertFalse(ConnectivityMeasure.isKEdgeConnected(g, 3));
-		assertTrue(ConnectivityMeasure.getEdgeConnectivity(g) == 2);
+        assertEquals(2, ConnectivityMeasure.getEdgeConnectivity(g));
 
 		end();
 	}

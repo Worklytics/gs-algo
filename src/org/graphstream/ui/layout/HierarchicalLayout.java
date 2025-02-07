@@ -31,13 +31,6 @@
  */
 package org.graphstream.ui.layout;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedList;
-
 import org.graphstream.algorithm.Prim;
 import org.graphstream.algorithm.SpanningTree;
 import org.graphstream.algorithm.generator.BarabasiAlbertGenerator;
@@ -48,6 +41,12 @@ import org.graphstream.graph.implementations.AdjacencyListGraph;
 import org.graphstream.stream.PipeBase;
 import org.graphstream.ui.geom.Point3;
 import org.graphstream.ui.view.Viewer;
+
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
 
 public class HierarchicalLayout extends PipeBase implements Layout {
 
@@ -82,9 +81,6 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 	long lastStep;
 
 	int nodeMoved;
-
-	double distanceBetweenLevels = 1;
-	double levelWidth = 1, levelHeight = 1;
 
 	public HierarchicalLayout() {
 		roots = new LinkedList<>();
@@ -576,7 +572,7 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 		structureChanged = true;
 	}
 
-	static class Box extends LinkedList<Node> {
+	public static class Box extends LinkedList<Node> {
 		private static final long serialVersionUID = -1929536876444346726L;
 
 		Node parent;

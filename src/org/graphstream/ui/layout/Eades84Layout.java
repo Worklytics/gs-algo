@@ -235,8 +235,8 @@ public class Eades84Layout extends PipeBase implements Layout {
 		EadesParticle p1, p2;
 		Spring spring;
 
-		p1 = (EadesParticle) particles.get(fromNodeId);
-		p2 = (EadesParticle) particles.get(toNodeId);
+		p1 = particles.get(fromNodeId);
+		p2 = particles.get(toNodeId);
 
 		spring = getNewSpring(p1, p2);
 		springs.put(edgeId, spring);

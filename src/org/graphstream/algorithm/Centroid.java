@@ -238,7 +238,7 @@ public class Centroid implements Algorithm {
 
 			if (info == null)
 				System.err
-						.printf("APSPInfo missing. Did you compute APSP before ?\n");
+						.print("APSPInfo missing. Did you compute APSP before ?\n");
 			
 			graph.nodes().forEach(other -> {
 				if (node != other) {
@@ -246,7 +246,7 @@ public class Centroid implements Algorithm {
 
 					if (d < 0)
 						System.err
-								.printf("Found a negative length value in centroid algorithm. "
+								.print("Found a negative length value in centroid algorithm. "
 										+ "Is graph connected ?\n");
 					else
 						m.accumulate(d);

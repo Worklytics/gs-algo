@@ -150,7 +150,7 @@ public class SurpriseMeasure implements Algorithm {
 		}
 
 		if (communities.containsKey(NULL))
-			System.err.printf("[WARNING] Some nodes do not have community.\n");
+			System.err.print("[WARNING] Some nodes do not have community.\n");
 
 		double F = graph.getNodeCount() * (graph.getNodeCount() - 1) / 2;
 		double p = 0;

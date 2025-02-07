@@ -128,12 +128,12 @@ public class TestAStar {
 		Iterator<? extends Edge> i = edges.iterator();
 
 		Edge e = i.next();
-		assertTrue(e != null);
-		assertTrue(e.getId().equals("AB"));
+        assertNotNull(e);
+        assertEquals("AB", e.getId());
 		e = i.next();
-		assertTrue(e != null);
-		assertTrue(e.getId().equals("BF"));
-		assertTrue(!i.hasNext());
+        assertNotNull(e);
+        assertEquals("BF", e.getId());
+        assertFalse(i.hasNext());
 	}
 
 	@Test
@@ -165,12 +165,12 @@ public class TestAStar {
 		Iterator<? extends Edge> i = edges.iterator();
 
 		Edge e = i.next();
-		assertTrue(e != null);
-		assertTrue(e.getId().equals("AB"));
+        assertNotNull(e);
+        assertEquals("AB", e.getId());
 		e = i.next();
-		assertTrue(e != null);
-		assertTrue(e.getId().equals("BF"));
-		assertTrue(!i.hasNext());
+        assertNotNull(e);
+        assertEquals("BF", e.getId());
+        assertFalse(i.hasNext());
 	}
 
 	@Test
@@ -200,21 +200,21 @@ public class TestAStar {
 		Iterator<? extends Edge> i = edges.iterator();
 
 		Edge e = i.next();
-		assertTrue(e != null);
-		assertTrue(e.getId().equals("AB"));
+        assertNotNull(e);
+        assertEquals("AB", e.getId());
 		e = i.next();
-		assertTrue(e != null);
-		assertTrue(e.getId().equals("BC"));
+        assertNotNull(e);
+        assertEquals("BC", e.getId());
 		e = i.next();
-		assertTrue(e != null);
-		assertTrue(e.getId().equals("CD"));
+        assertNotNull(e);
+        assertEquals("CD", e.getId());
 		e = i.next();
-		assertTrue(e != null);
-		assertTrue(e.getId().equals("DE"));
+        assertNotNull(e);
+        assertEquals("DE", e.getId());
 		e = i.next();
-		assertTrue(e != null);
-		assertTrue(e.getId().equals("EF"));
-		assertTrue(!i.hasNext());
+        assertNotNull(e);
+        assertEquals("EF", e.getId());
+        assertFalse(i.hasNext());
 	}
 
 	@Test
@@ -252,11 +252,11 @@ public class TestAStar {
 
 		Edge e = i.next();
 		assertNotNull(e);
-		assertTrue(e.getId().equals("AB"));
+        assertEquals("AB", e.getId());
 		e = i.next();
 		assertNotNull(e);
-		assertTrue(e.getId().equals("BF"));
-		assertTrue(!i.hasNext());
+        assertEquals("BF", e.getId());
+        assertFalse(i.hasNext());
 	}
 
 	@Test
@@ -296,21 +296,21 @@ public class TestAStar {
 		Iterator<? extends Edge> i = edges.iterator();
 
 		Edge e = i.next();
-		assertTrue(e != null);
-		assertTrue(e.getId().equals("AB"));
+        assertNotNull(e);
+        assertEquals("AB", e.getId());
 		e = i.next();
-		assertTrue(e != null);
-		assertTrue(e.getId().equals("BC"));
+        assertNotNull(e);
+        assertEquals("BC", e.getId());
 		e = i.next();
-		assertTrue(e != null);
-		assertTrue(e.getId().equals("CD"));
+        assertNotNull(e);
+        assertEquals("CD", e.getId());
 		e = i.next();
-		assertTrue(e != null);
-		assertTrue(e.getId().equals("DE"));
+        assertNotNull(e);
+        assertEquals("DE", e.getId());
 		e = i.next();
-		assertTrue(e != null);
-		assertTrue(e.getId().equals("EF"));
-		assertTrue(!i.hasNext());
+        assertNotNull(e);
+        assertEquals("EF", e.getId());
+        assertFalse(i.hasNext());
 	}
 
 	@Test
@@ -354,11 +354,11 @@ public class TestAStar {
 		Iterator<? extends Edge> i = edges.iterator();
 
 		Edge e = i.next();
-		assertTrue(e != null);
-		assertTrue(e.getId().equals("AB"));
+        assertNotNull(e);
+        assertEquals("AB", e.getId());
 		e = i.next();
-		assertTrue(e != null);
-		assertTrue(e.getId().equals("BF3"));
-		assertTrue(!i.hasNext());
+        assertNotNull(e);
+        assertEquals("BF3", e.getId());
+        assertFalse(i.hasNext());
 	}
 }

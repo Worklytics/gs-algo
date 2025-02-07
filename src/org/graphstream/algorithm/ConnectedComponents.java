@@ -656,7 +656,7 @@ public class ConnectedComponents extends SinkAdapter
 	 */
 	@Override
 	public void edgeAttributeAdded(String graphId, long timeId, String edgeId, String attribute, Object value) {
-		if (cutAttribute != null && attribute.equals(cutAttribute)) {
+		if (attribute.equals(cutAttribute)) {
 			if (!started && graph != null)
 				compute();
 
@@ -690,7 +690,7 @@ public class ConnectedComponents extends SinkAdapter
 	 */
 	@Override
 	public void edgeAttributeRemoved(String graphId, long timeId, String edgeId, String attribute) {
-		if (cutAttribute != null && attribute.equals(cutAttribute)) {
+		if (attribute.equals(cutAttribute)) {
 			if (!started && graph != null)
 				compute();
 

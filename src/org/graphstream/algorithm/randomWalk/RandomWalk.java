@@ -509,9 +509,8 @@ public class RandomWalk extends SinkAdapter implements DynamicAlgorithm {
 	public Entity createEntity() {
 		try {
 			Object o = Class.forName(entityClass).newInstance();
-			if(o instanceof Entity) {
-				Entity e = (Entity) o;
-				e.init(context, randomNode(context.graph, context.random));
+			if(o instanceof Entity e) {
+                e.init(context, randomNode(context.graph, context.random));
 				
 				return e;
 			} else {

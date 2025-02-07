@@ -422,8 +422,7 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 			arc.computeReducedCost(reducedCost);
 			if (reducedCost.isNegative()) {
 				enteringArc = arc;
-				return;
-			}
+            }
 		});
 		
 		// Skip the artificial arcs if the objective value is finite
@@ -436,8 +435,7 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 				arc.computeReducedCost(reducedCost);
 				if (reducedCost.isNegative()) {
 					enteringArc = arc;
-					return;
-				}
+                }
 			}
 		});
 	}
@@ -1485,8 +1483,8 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 		/**
 		 * Non basic saturated arc
 		 */
-		NONBASIC_UPPER;
-	}
+		NONBASIC_UPPER
+    }
 
 	/**
 	 * Internal representation of the graph arcs. Stores the arc ids,

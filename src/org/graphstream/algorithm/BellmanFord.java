@@ -187,7 +187,7 @@ public class BellmanFord implements Algorithm {
 	 *            id of the source node
 	 */
 	public BellmanFord(String attribute, String sourceNode) {
-		this.identifier = this.toString() + "/BellmanFord";
+		this.identifier = this + "/BellmanFord";
 		this.source_id = sourceNode;
 		this.weightAttribute = attribute;
 	}

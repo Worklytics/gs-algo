@@ -56,15 +56,15 @@ class Benchmark {
 	private static final int M = 500000;
 	private static final int EMAX = 100;
 
-	private Random rnd;
-	private Graph g;
-	private Node source;
+	private final Random rnd;
+	private final Graph g;
+	private final Node source;
+
+	private final Dijkstra dijkstra;
+	private final DynamicOneToAllShortestPath dspF;
+	private final DynamicOneToAllShortestPath dspM;
 	
-	private Dijkstra dijkstra;
-	private DynamicOneToAllShortestPath dspF;
-	private DynamicOneToAllShortestPath dspM;
-	
-	private List<TwoInts> eList;
+	private final List<TwoInts> eList;
 	private int eIndex;
 	
 	private int randomLength() {

@@ -47,6 +47,7 @@ import org.graphstream.ui.view.Viewer;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 @Ignore("need gs-ui package")
@@ -124,8 +125,8 @@ public class TestGenerator {
 		int r = JOptionPane.showConfirmDialog(null, String.format(
 				"%s with %d iterations. Is it correct ?", name, size), name,
 				JOptionPane.YES_NO_OPTION);
-		
-		assertTrue(r == JOptionPane.YES_OPTION);
+
+        assertEquals(JOptionPane.YES_OPTION, r);
 
 		gvr.close();
 	}

@@ -53,7 +53,7 @@ package org.graphstream.algorithm.generator;
  */
 public class PetersenGraphGenerator extends BaseGenerator {
 
-	private int[][] nodes = { { 0, 2, 4, 1, 3 }, { 7, 6, 5, 9, 8 } };
+	private final int[][] nodes = { { 0, 2, 4, 1, 3 }, { 7, 6, 5, 9, 8 } };
 
 	/*
 	 * (non-Javadoc)

@@ -434,11 +434,11 @@ public class APSP extends SinkAdapter implements Algorithm {
 			nodeList.stream().forEach(k -> {
 				nodeList.stream().forEach(i -> {
 					nodeList.stream().forEach(j -> {
-						APSPInfo I = (APSPInfo) i.getAttribute(
+						APSPInfo I = i.getAttribute(
 								APSPInfo.ATTRIBUTE_NAME, APSPInfo.class);
-						APSPInfo J = (APSPInfo) j.getAttribute(
+						APSPInfo J = j.getAttribute(
 								APSPInfo.ATTRIBUTE_NAME, APSPInfo.class);
-						APSPInfo K = (APSPInfo) k.getAttribute(
+						APSPInfo K = k.getAttribute(
 								APSPInfo.ATTRIBUTE_NAME, APSPInfo.class);
 
 						double Dij = I.getLengthTo(J.source.getId());

@@ -152,17 +152,17 @@ public class TestToolkit {
 		g.addEdge("AD", "A", "D");
 
 		cc = Toolkit.clusteringCoefficient(g.getNode("A"));
-		assertTrue(cc == 0);
+        assertEquals(0, cc, 0.0);
 
 		g.addEdge("BC", "B", "C");
 
 		cc = Toolkit.clusteringCoefficient(g.getNode("A"));
-		assertTrue(cc == 1.0 / 3.0);
+        assertEquals(1.0 / 3.0, cc, 0.0);
 
 		g.addEdge("BD", "B", "D");
 		g.addEdge("CD", "C", "D");
 
 		cc = Toolkit.clusteringCoefficient(g.getNode("A"));
-		assertTrue(cc == 1.0);
+        assertEquals(1.0, cc, 0.0);
 	}
 }
