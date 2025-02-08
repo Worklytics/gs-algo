@@ -31,6 +31,7 @@
 package org.graphstream.algorithm.measure;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedList;
 
@@ -71,8 +72,8 @@ public class ConnectivityMeasure {
 		 * We start with the max degree.
 		 */
 		current = (g.nodes()
-			.max((x, y) -> Integer.compare(x.getDegree(), y.getDegree())) 
-			.get())
+			.max(Comparator.comparingInt(Node::getDegree))
+			.orElseThrow())
 			.getDegree();
 		
 		isCurrentConnected = isKVertexConnected(g, current);

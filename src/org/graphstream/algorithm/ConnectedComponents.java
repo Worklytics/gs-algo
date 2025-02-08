@@ -34,11 +34,7 @@
  */
 package org.graphstream.algorithm;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Stream;
 
 import org.graphstream.graph.Graph;
@@ -385,11 +381,11 @@ public class ConnectedComponents extends SinkAdapter
 	public ConnectedComponent getGiantComponent() {
 		checkStarted();
 
-		ConnectedComponent maxCC = null;
+		ConnectedComponent maxCC;
 		
 		maxCC = components.stream()
-				.max((cc1, cc2) -> Integer.compare(cc1.size, cc2.size))
-				.get();
+				.max(Comparator.comparingInt(cc -> cc.size))
+				.orElse(null);
 
 		return maxCC;
 	}
@@ -449,7 +445,7 @@ public class ConnectedComponents extends SinkAdapter
 		if (sizeThreshold <= 1 && sizeCeiling <= 0) {
 			return components.size();
 		} else {
-			int count = 0;
+			int count;
 			
 			count = (int) components.stream()
 					.filter(cc -> (cc.size >= sizeThreshold && (sizeCeiling <= 0 || cc.size < sizeCeiling)))
@@ -660,7 +656,8 @@ public class ConnectedComponents extends SinkAdapter
 			if (!started && graph != null)
 				compute();
 
-			Edge edge = graph.getEdge(edgeId);
+            assert graph != null;
+            Edge edge = graph.getEdge(edgeId);
 
 			// The attribute is added. Do as if the edge was removed.
 
@@ -694,7 +691,8 @@ public class ConnectedComponents extends SinkAdapter
 			if (!started && graph != null)
 				compute();
 
-			Edge edge = graph.getEdge(edgeId);
+            assert graph != null;
+            Edge edge = graph.getEdge(edgeId);
 
 			// The attribute is removed. Do as if the edge was added.
 
@@ -814,11 +812,9 @@ public class ConnectedComponents extends SinkAdapter
 		 * @return an stream over the edges of this component
 		 */
 		public Stream<Edge> edges() {
-			return graph.edges().filter(e -> {
-				return (componentsMap.get(e.getNode0()) == ConnectedComponent.this)
-						&& (componentsMap.get(e.getNode1()) == ConnectedComponent.this)
-						&& !isCutEdge(e) ;
-			});
+			return graph.edges().filter(e -> (componentsMap.get(e.getNode0()) == ConnectedComponent.this)
+                    && (componentsMap.get(e.getNode1()) == ConnectedComponent.this)
+                    && !isCutEdge(e));
 		}
 
 		/**

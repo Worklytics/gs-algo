@@ -36,6 +36,7 @@ import static org.graphstream.ui.graphicGraph.GraphPosLengthUtils.edgeLength;
 import static org.graphstream.ui.graphicGraph.GraphPosLengthUtils.nodePosition;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 
 import org.graphstream.algorithm.util.Parameter;
@@ -480,8 +481,8 @@ public class AStar implements Algorithm {
 		AStarNode theChosenOne = null;
 		
 		theChosenOne = open.values().stream()
-				.min((n,m) -> Double.compare(n.rank, m.rank))
-				.get();
+				.min(Comparator.comparingDouble(n -> n.rank))
+				.orElse(null);
 		
 		return theChosenOne;
 	}
