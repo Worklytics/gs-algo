@@ -5,24 +5,24 @@ env:
   JAVA_VERSION: '17'
 
 on:
+  push:
   pull_request:
     types: [ opened, synchronize, ready_for_review ]
 
 jobs:
-  ci-compile-test:
-    runs-on: ${{ vars.DEFAULT_RUNNER }}
-    permissions:
-      contents: 'read'
-      id-token: 'write'
+  test:
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Check out code
+      - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Setup Java
+
+      - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: ${{ env.JAVA_DISTRIBUTION }}
           java-version: ${{ env.JAVA_VERSION }}
-      - name: Compile & Test
-        run: |
-          export MAVEN_OPTS="-Xms512m -Xmx2g"
-          mvn test
+          cache: 'maven' # Caches dependencies to speed up builds
+
+      - name: Run tests
+        run: mvn test
