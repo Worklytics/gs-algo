@@ -26,7 +26,7 @@
 
 	<groupId>org.graphstream</groupId>
 	<artifactId>gs-algo</artifactId>
-	<version>2.0</version>
+	<version>2.0+worklytics.1</version>
   	<packaging>jar</packaging>
 
 	<name>gs-algo</name>
@@ -136,7 +136,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
-						<version>3.2.6</version>
+						<version>3.2.7</version>
 						<configuration>
 							<keyname><![CDATA[GraphStream Team <team@graphstream-project.org>]]></keyname>
 							<skip>false</skip>
@@ -221,7 +221,7 @@
 						</tag>
 					</tags>
 					<author>true</author>
-					<failOnError>flase</failOnError>
+					<failOnError>false</failOnError>
 					<nodeprecated>false</nodeprecated>
 					<nodeprecatedlist>false</nodeprecatedlist>
 					<noindex>false</noindex>
