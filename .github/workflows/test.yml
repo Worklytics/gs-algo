@@ -1,0 +1,28 @@
+name: Test
+
+env:
+  JAVA_DISTRIBUTION: 'temurin'
+  JAVA_VERSION: '17'
+
+on:
+  pull_request:
+    types: [ opened, synchronize, ready_for_review ]
+
+jobs:
+  ci-compile-test:
+    runs-on: ${{ vars.DEFAULT_RUNNER }}
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: ${{ env.JAVA_DISTRIBUTION }}
+          java-version: ${{ env.JAVA_VERSION }}
+      - name: Compile & Test
+        run: |
+          export MAVEN_OPTS="-Xms512m -Xmx2g"
+          mvn test
