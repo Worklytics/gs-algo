@@ -342,7 +342,7 @@ public class BetweennessCentrality implements Algorithm {
 		initAllEdges(graph);
 
 		float n = graph.getNodeCount();
-		DoubleAccumulator i = new DoubleAccumulator((x, y) -> x + y, 0);
+		DoubleAccumulator i = new DoubleAccumulator(Double::sum, 0);
 		
 		graph.nodes().forEach(s -> {
 			PriorityQueue<Node> S = null;
@@ -390,9 +390,9 @@ public class BetweennessCentrality implements Algorithm {
 	 *         compute the centrality.
 	 */
 	protected PriorityQueue<Node> simpleExplore(Node source, Graph graph) {
-		LinkedList<Node> Q = new LinkedList<Node>();
-		PriorityQueue<Node> S = new PriorityQueue<Node>(graph.getNodeCount(),
-				new BrandesNodeComparatorLargerFirst());
+		LinkedList<Node> Q = new LinkedList<>();
+		PriorityQueue<Node> S = new PriorityQueue<>(graph.getNodeCount(),
+                new BrandesNodeComparatorLargerFirst());
 
 		setupAllNodes(graph);
 		Q.add(source);
@@ -433,10 +433,10 @@ public class BetweennessCentrality implements Algorithm {
 	 *         compute the centrality.
 	 */
 	protected PriorityQueue<Node> dijkstraExplore(Node source, Graph graph) {
-		PriorityQueue<Node> S = new PriorityQueue<Node>(graph.getNodeCount(),
-				new BrandesNodeComparatorLargerFirst());
-		PriorityQueue<Node> Q = new PriorityQueue<Node>(graph.getNodeCount(),
-				new BrandesNodeComparatorSmallerFirst());
+		PriorityQueue<Node> S = new PriorityQueue<>(graph.getNodeCount(),
+                new BrandesNodeComparatorLargerFirst());
+		PriorityQueue<Node> Q = new PriorityQueue<>(graph.getNodeCount(),
+                new BrandesNodeComparatorSmallerFirst());
 
 		setupAllNodes(graph);
 		setDistance(source, 0.0);
@@ -503,10 +503,10 @@ public class BetweennessCentrality implements Algorithm {
 	 * <li>doi = "DOI: 10.1016/j.socnet.2007.11.001",</li> </li>
 	 */
 	protected PriorityQueue<Node> dijkstraExplore2(Node source, Graph graph) {
-		PriorityQueue<Node> S = new PriorityQueue<Node>(graph.getNodeCount(),
-				new BrandesNodeComparatorLargerFirst());
-		PriorityQueue<Node> Q = new PriorityQueue<Node>(graph.getNodeCount(),
-				new BrandesNodeComparatorSmallerFirst());
+		PriorityQueue<Node> S = new PriorityQueue<>(graph.getNodeCount(),
+                new BrandesNodeComparatorLargerFirst());
+		PriorityQueue<Node> Q = new PriorityQueue<>(graph.getNodeCount(),
+                new BrandesNodeComparatorSmallerFirst());
 
 		setupAllNodes(graph);
 		setDistance(source, 0.0);
@@ -714,7 +714,7 @@ public class BetweennessCentrality implements Algorithm {
 	 *            The predecessor to add.
 	 */
 	protected void replacePredecessorsOf(Node node, Node predecessor) {
-		HashSet<Node> set = new HashSet<Node>();
+		HashSet<Node> set = new HashSet<>();
 
 		set.add(predecessor);
 		node.setAttribute(predAttributeName, set);
@@ -743,7 +743,7 @@ public class BetweennessCentrality implements Algorithm {
 	 *            Remove all predecessors of this node.
 	 */
 	protected void clearPredecessorsOf(Node node) {
-		HashSet<Node> set = new HashSet<Node>();
+		HashSet<Node> set = new HashSet<>();
 		node.setAttribute(predAttributeName, set);
 	}
 

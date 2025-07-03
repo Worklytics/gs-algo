@@ -35,7 +35,7 @@ import org.graphstream.stream.SinkAdapter;
  * A measure to get the maximum count of nodes appearing simultaneously in the
  * dynamic graph. It works as a sink, so it just needs to be added to the source
  * providing graph informations.
- * 
+ * <p>
  * For example, in the graph :
  * 
  * <pre>

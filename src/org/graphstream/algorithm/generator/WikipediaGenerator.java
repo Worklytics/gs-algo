@@ -34,7 +34,7 @@ import java.net.URISyntaxException;
 public class WikipediaGenerator extends URLGenerator {
 	public static final String SPECIAL_URLS = "^https://%s[.]wikipedia[.]org/wiki/(Wikipedia|File|Special|Category|Talk|Portal|Help|Template|Template_talk):.*$";
 
-	public static enum Lang {
+	public enum Lang {
 		EN("en.wikipedia.org", "Main_Page",
 				"Wikipedia|File|Special|Category|Talk|Portal|Help|Template|Template_talk"), FR(
 				"fr.wikipedia.org", "Wikipédia:Accueil_Principal",

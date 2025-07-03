@@ -31,6 +31,7 @@
 package org.graphstream.algorithm.measure;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedList;
 
@@ -45,7 +46,7 @@ import org.graphstream.stream.SinkAdapter;
 
 /**
  * Get the vertex-connectivity of a graph.
- * 
+ * <p>
  * A graph is said to be k-vertex-connected (or k-connected) if the graph
  * remains connected when you delete fewer than k vertices from the graph (from
  * <a
@@ -71,8 +72,8 @@ public class ConnectivityMeasure {
 		 * We start with the max degree.
 		 */
 		current = (g.nodes()
-			.max((x, y) -> Integer.compare(x.getDegree(), y.getDegree())) 
-			.get())
+			.max(Comparator.comparingInt(Node::getDegree))
+			.orElseThrow())
 			.getDegree();
 		
 		isCurrentConnected = isKVertexConnected(g, current);
@@ -100,7 +101,7 @@ public class ConnectivityMeasure {
 	 * Get the edge-connectivity k of a graph such that there is a k-tuple of
 	 * edges whose removal disconnects the graph. This uses the Ford-Fulkerson
 	 * algorithm to compute maximum flows in the graph.
-	 * 
+	 * <p>
 	 * A simple algorithm would, for every pair (u,v), determine the maximum
 	 * flow from u to v with the capacity of all edges in G set to 1 for both
 	 * directions. A graph is k-edge-connected if and only if the maximum flow
@@ -174,9 +175,9 @@ public class ConnectivityMeasure {
 	 * @return a k-tuple of nodes or null if graph is (k+1)-vertex-connected
 	 */
 	public static Node[] getKDisconnectingNodeTuple(Graph g, int k) {
-		LinkedList<Integer> toVisit = new LinkedList<Integer>();
+		LinkedList<Integer> toVisit = new LinkedList<>();
 		boolean[] visited = new boolean[g.getNodeCount()];
-		HashSet<Integer> removed = new HashSet<Integer>();
+		HashSet<Integer> removed = new HashSet<>();
 		KIndexesArray karray = new KIndexesArray(k, g.getNodeCount());
 
 		if (k >= g.getNodeCount())
@@ -190,11 +191,11 @@ public class ConnectivityMeasure {
 			for (int j = 0; j < k; j++)
 				removed.add(karray.get(j));
 
-			for (int j = 0; toVisit.size() == 0; j++)
+			for (int j = 0; toVisit.isEmpty(); j++)
 				if (!removed.contains(j))
 					toVisit.add(j);
 
-			while (toVisit.size() > 0) {
+			while (!toVisit.isEmpty()) {
 				Node n = g.getNode(toVisit.poll());
 				visited[n.getIndex()] = true;
 				
@@ -233,9 +234,9 @@ public class ConnectivityMeasure {
 	 * @return a k-tuple of edges or null if graph is (k+1)-edge-connected
 	 */
 	public static Edge[] getKDisconnectingEdgeTuple(Graph g, int k) {
-		LinkedList<Integer> toVisit = new LinkedList<Integer>();
+		LinkedList<Integer> toVisit = new LinkedList<>();
 		boolean[] visited = new boolean[g.getNodeCount()];
-		HashSet<Integer> removed = new HashSet<Integer>();
+		HashSet<Integer> removed = new HashSet<>();
 		KIndexesArray karray = new KIndexesArray(k, g.getNodeCount());
 
 		int minDegree = Integer.MAX_VALUE;
@@ -272,7 +273,7 @@ public class ConnectivityMeasure {
 
 			toVisit.add(0);
 
-			while (toVisit.size() > 0) {
+			while (!toVisit.isEmpty()) {
 				Node n = g.getNode(toVisit.poll());
 				
 				visited[n.getIndex()] = true;
@@ -287,15 +288,15 @@ public class ConnectivityMeasure {
 				});
 			}
 
-			for (int i = 0; i < visited.length; i++)
-				if (!visited[i]) {
-					Edge[] tuple = new Edge[k];
+            for (boolean b : visited)
+                if (!b) {
+                    Edge[] tuple = new Edge[k];
 
-					for (int j = 0; j < k; j++)
-						tuple[j] = g.getEdge(karray.get(j));
+                    for (int j = 0; j < k; j++)
+                        tuple[j] = g.getEdge(karray.get(j));
 
-					return tuple;
-				}
+                    return tuple;
+                }
 		} while (karray.next());
 
 		return null;

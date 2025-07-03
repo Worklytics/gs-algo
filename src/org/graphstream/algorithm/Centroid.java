@@ -230,15 +230,15 @@ public class Centroid implements Algorithm {
 	public void compute() {
 		//float min = Float.MAX_VALUE;
 		DoubleAccumulator min = new DoubleAccumulator((x, y) -> y, Double.MAX_VALUE);
-		HashSet<Node> centroid = new HashSet<Node>();
+		HashSet<Node> centroid = new HashSet<>();
 		
 		graph.nodes().forEach(node -> {
-			DoubleAccumulator m = new DoubleAccumulator((x, y) -> x + y, 0);
+			DoubleAccumulator m = new DoubleAccumulator(Double::sum, 0);
 			APSP.APSPInfo info = (APSPInfo) node.getAttribute(apspInfoAttribute);
 
 			if (info == null)
 				System.err
-						.printf("APSPInfo missing. Did you compute APSP before ?\n");
+						.print("APSPInfo missing. Did you compute APSP before ?\n");
 			
 			graph.nodes().forEach(other -> {
 				if (node != other) {
@@ -246,7 +246,7 @@ public class Centroid implements Algorithm {
 
 					if (d < 0)
 						System.err
-								.printf("Found a negative length value in centroid algorithm. "
+								.print("Found a negative length value in centroid algorithm. "
 										+ "Is graph connected ?\n");
 					else
 						m.accumulate(d);

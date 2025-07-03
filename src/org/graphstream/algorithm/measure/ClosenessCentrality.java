@@ -148,7 +148,7 @@ public class ClosenessCentrality extends AbstractCentrality {
 
 			if (info == null)
 				System.err
-						.printf("APSPInfo missing. Did you compute APSP before ?\n");
+						.print("APSPInfo missing. Did you compute APSP before ?\n");
 
 			for (int idx2 = 0; idx2 < count; idx2++) {
 				if (idx != idx2) {
@@ -160,7 +160,7 @@ public class ClosenessCentrality extends AbstractCentrality {
 					else {
 						if (d < 0)
 							System.err
-									.printf("Found a negative length value in centroid algorithm. "
+									.print("Found a negative length value in centroid algorithm. "
 											+ "Is graph connected ?\n");
 						else
 							data[idx] += d;

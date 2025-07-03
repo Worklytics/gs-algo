@@ -43,7 +43,7 @@ public class RandomTools {
 	/**
 	 * Returns a pseudorandom number drawn from exponential distribution with
 	 * mean 1.
-	 * 
+	 * <p>
 	 * Uses the von Neumann's exponential generator.
 	 * 
 	 * @param rnd
@@ -75,7 +75,7 @@ public class RandomTools {
 
 	/**
 	 * Returns a pseudorandom number drawn from binomial distribution B(n, p).
-	 * 
+	 * <p>
 	 * Uses a simple waiting time method based on exponential distribution.
 	 * 
 	 * @param n
@@ -101,7 +101,7 @@ public class RandomTools {
 	/**
 	 * Generates a pseudorandom subset of size k of the set {0, 1,...,n - 1}.
 	 * Each element has the same chance to be chosen.
-	 * 
+	 * <p>
 	 * Uses Floyd's method of subset generation with only k iterations. Note
 	 * that the quality of this generator is limited by Java's random generator.
 	 * Java stores the internal state in 48 bits, so in the best case we can
@@ -124,7 +124,7 @@ public class RandomTools {
 	public static Set<Integer> randomKsubset(int n, int k, Set<Integer> subset,
 			Random rnd) {
 		if (subset == null)
-			subset = new HashSet<Integer>(4 * k / 3 + 1);
+			subset = new HashSet<>(4 * k / 3 + 1);
 		else
 			subset.clear();
 		for (int i = n - k; i < n; i++) {

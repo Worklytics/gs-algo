@@ -102,7 +102,7 @@ public class TestKruskalPrim {
 	
 	public void helper(Kruskal k, Graph g, double expectedWeight, int expectedCount) {
 		assertEquals(expectedWeight, k.getTreeWeight(), 0);
-		DoubleAccumulator edgeCount = new DoubleAccumulator((x,y) -> x + y, 0) ;
+		DoubleAccumulator edgeCount = new DoubleAccumulator(Double::sum, 0) ;
 	
 		k.getTreeEdges().forEach(e -> {
 			Boolean b = (Boolean) e.getAttribute(k.getFlagAttribute()); 
@@ -111,8 +111,8 @@ public class TestKruskalPrim {
 		});
 		assertEquals(expectedCount, (int)edgeCount.get());
 		
-		DoubleAccumulator edgeCount2 = new DoubleAccumulator((x,y) -> x + y, 0) ;
-		DoubleAccumulator treeWeight = new DoubleAccumulator((x,y) -> x + y, 0) ;
+		DoubleAccumulator edgeCount2 = new DoubleAccumulator(Double::sum, 0) ;
+		DoubleAccumulator treeWeight = new DoubleAccumulator(Double::sum, 0) ;
 		
 		g.edges()
 			.filter(e -> (Boolean) e.getAttribute(k.getFlagAttribute()))

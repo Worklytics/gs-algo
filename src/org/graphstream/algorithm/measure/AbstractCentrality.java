@@ -43,7 +43,7 @@ import org.graphstream.graph.Graph;
  * {@link #data}.
  */
 public abstract class AbstractCentrality implements Algorithm {
-	public static enum NormalizationMode {
+	public enum NormalizationMode {
 		NONE, SUM_IS_1, MAX_1_MIN_0
 	}
 

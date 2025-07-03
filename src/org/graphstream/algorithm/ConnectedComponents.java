@@ -34,11 +34,7 @@
  */
 package org.graphstream.algorithm;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Stream;
 
 import org.graphstream.graph.Graph;
@@ -220,7 +216,7 @@ public class ConnectedComponents extends SinkAdapter
 	 * initialized and the algorithm will not receive any event from any graph.
 	 * You will have to call the {@link #init(Graph)} method with a reference to
 	 * a graph so that the computation is able to start.
-	 * 
+	 * <p>
 	 * After the {@link #init(Graph)} method is invoked, the computation starts
 	 * as soon as and event is received or if the {@link #compute()} method is
 	 * invoked.
@@ -259,8 +255,8 @@ public class ConnectedComponents extends SinkAdapter
 		this.graph = graph;
 		this.graph.addSink(this);
 
-		components = new HashSet<ConnectedComponent>();
-		componentsMap = new HashMap<Node, ConnectedComponent>();
+		components = new HashSet<>();
+		componentsMap = new HashMap<>();
 	}
 
 	/*
@@ -287,7 +283,7 @@ public class ConnectedComponents extends SinkAdapter
 
 	/**
 	 * Compute the connected component containing `from`.
-	 * 
+	 * <p>
 	 * We use here the {@link ConnectedComponent#registerNode(Node)} method
 	 * which will update the {@link #componentsMap}, the size of the new
 	 * connected component, the size of the old connected component of `from`
@@ -303,7 +299,7 @@ public class ConnectedComponents extends SinkAdapter
 	 *            in the graph structure.
 	 */
 	protected void computeConnectedComponent(ConnectedComponent cc, Node from, Edge drop) {
-		LinkedList<Node> open = new LinkedList<Node>();
+		LinkedList<Node> open = new LinkedList<>();
 
 		open.add(from);
 		cc.registerNode(from);
@@ -354,7 +350,7 @@ public class ConnectedComponents extends SinkAdapter
 
 	/**
 	 * Publish the index of the connected component where the node belongs.
-	 * 
+	 * <p>
 	 * This is more efficient than using the {@link #setCountAttribute(String)}
 	 * method. The latter will update the attribute at each change, implying a
 	 * bigger complexity cost, while this method is a one shot call, so you can
@@ -385,11 +381,11 @@ public class ConnectedComponents extends SinkAdapter
 	public ConnectedComponent getGiantComponent() {
 		checkStarted();
 
-		ConnectedComponent maxCC = null;
+		ConnectedComponent maxCC;
 		
 		maxCC = components.stream()
-				.max((cc1, cc2) -> Integer.compare(cc1.size, cc2.size))
-				.get();
+				.max(Comparator.comparingInt(cc -> cc.size))
+				.orElse(null);
 
 		return maxCC;
 	}
@@ -449,7 +445,7 @@ public class ConnectedComponents extends SinkAdapter
 		if (sizeThreshold <= 1 && sizeCeiling <= 0) {
 			return components.size();
 		} else {
-			int count = 0;
+			int count;
 			
 			count = (int) components.stream()
 					.filter(cc -> (cc.size >= sizeThreshold && (sizeCeiling <= 0 || cc.size < sizeCeiling)))
@@ -656,11 +652,12 @@ public class ConnectedComponents extends SinkAdapter
 	 */
 	@Override
 	public void edgeAttributeAdded(String graphId, long timeId, String edgeId, String attribute, Object value) {
-		if (cutAttribute != null && attribute.equals(cutAttribute)) {
+		if (attribute.equals(cutAttribute)) {
 			if (!started && graph != null)
 				compute();
 
-			Edge edge = graph.getEdge(edgeId);
+            assert graph != null;
+            Edge edge = graph.getEdge(edgeId);
 
 			// The attribute is added. Do as if the edge was removed.
 
@@ -690,11 +687,12 @@ public class ConnectedComponents extends SinkAdapter
 	 */
 	@Override
 	public void edgeAttributeRemoved(String graphId, long timeId, String edgeId, String attribute) {
-		if (cutAttribute != null && attribute.equals(cutAttribute)) {
+		if (attribute.equals(cutAttribute)) {
 			if (!started && graph != null)
 				compute();
 
-			Edge edge = graph.getEdge(edgeId);
+            assert graph != null;
+            Edge edge = graph.getEdge(edgeId);
 
 			// The attribute is removed. Do as if the edge was added.
 
@@ -731,7 +729,7 @@ public class ConnectedComponents extends SinkAdapter
 	 * A representation of a connected component. These objects are used to
 	 * store informations about components and to allow to iterate over all
 	 * nodes of a same component.
-	 * 
+	 * <p>
 	 * You can retrieve these objects using the
 	 * {@link ConnectedComponents#getConnectedComponentOf(Node)} methods of the
 	 * algorithm.
@@ -740,7 +738,7 @@ public class ConnectedComponents extends SinkAdapter
 	public class ConnectedComponent implements Structure {
 		/**
 		 * The unique id of this component.
-		 * 
+		 * <p>
 		 * The uniqueness of the id is local to an instance of the
 		 * {@link ConnectedComponents} algorithm.
 		 */
@@ -791,22 +789,22 @@ public class ConnectedComponents extends SinkAdapter
 
 		/**
 		 * Get a set containing all the nodes of this component.
-		 * 
+		 * <p>
 		 * A new set is built for each call to this method, so handle with care.
 		 * 
 		 * @return a new set of nodes belonging to this component
 		 */
 		public Set<Node> getNodeSet() {
-			HashSet<Node> nodes = new HashSet<Node>();
+			HashSet<Node> nodes = new HashSet<>();
 			
-			nodes().forEach(n -> nodes.add(n));
+			nodes().forEach(nodes::add);
 			
 			return nodes;
 		}
 
 		/**
 		 * Return an stream over the edge of this component.
-		 * 
+		 * <p>
 		 * An edge is in the component if the two ends of this edges are in the
 		 * component and the edge does not have the cut attribute. Note that,
 		 * using cut attribute, some edges can be in none of the components.
@@ -814,11 +812,9 @@ public class ConnectedComponents extends SinkAdapter
 		 * @return an stream over the edges of this component
 		 */
 		public Stream<Edge> edges() {
-			return graph.edges().filter(e -> {
-				return (componentsMap.get(e.getNode0()) == ConnectedComponent.this)
-						&& (componentsMap.get(e.getNode1()) == ConnectedComponent.this)
-						&& !isCutEdge(e) ;
-			});
+			return graph.edges().filter(e -> (componentsMap.get(e.getNode0()) == ConnectedComponent.this)
+                    && (componentsMap.get(e.getNode1()) == ConnectedComponent.this)
+                    && !isCutEdge(e));
 		}
 
 		/**

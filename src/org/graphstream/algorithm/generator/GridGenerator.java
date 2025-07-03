@@ -292,6 +292,6 @@ public class GridGenerator extends BaseGenerator {
 	}
 
 	protected String nodeName(int x, int y) {
-		return Integer.toString(x) + "_" + Integer.toString(y);
+		return x + "_" + y;
 	}
 }

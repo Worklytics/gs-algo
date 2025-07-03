@@ -50,11 +50,11 @@ import static java.lang.Math.atan;
  * Generate a <b>social</b> dynamic graph. Graph is composed of high-connected
  * group of nodes, modeling organizations, and few connections between
  * organizations.
- * 
+ * <p>
  * This is done by creating <i>points of interest</i>. Nodes can be interested
  * by these points or loose them interest. When two nodes are interested by at
  * least one common point, then there are connected.
- * 
+ * <p>
  * Some probabilities can be set defining the following events :
  * <ul>
  * <li>remove a node ;</li>
@@ -83,7 +83,7 @@ public class PointsOfInterestGenerator extends BaseGenerator {
 		Set<Addict> addict;
 
 		PointOfInterest() {
-			addict = new HashSet<Addict>();
+			addict = new HashSet<>();
 		}
 
 		/**
@@ -96,7 +96,7 @@ public class PointsOfInterestGenerator extends BaseGenerator {
 		 */
 		void newAddict(Addict addictA) {
 			if (!addict.contains(addictA)) {
-				addict.forEach(addictB -> addictA.link(addictB));
+				addict.forEach(addictA::link);
 
 				addict.add(addictA);
 				addictA.pointsOfInterest.add(this);
@@ -116,7 +116,7 @@ public class PointsOfInterestGenerator extends BaseGenerator {
 				addict.remove(addictA);
 				addictA.pointsOfInterest.remove(this);
 
-				addict.forEach(addictB -> addictA.unlink(addictB));
+				addict.forEach(addictA::unlink);
 			}
 		}
 
@@ -181,8 +181,8 @@ public class PointsOfInterestGenerator extends BaseGenerator {
 
 		Addict(String id) {
 			this.id = id;
-			pointsOfInterest = new LinkedList<PointOfInterest>();
-			neighbor = new HashMap<Addict, AddictNeighbor>();
+			pointsOfInterest = new LinkedList<>();
+			neighbor = new HashMap<>();
 		}
 
 		/**
@@ -292,7 +292,7 @@ public class PointsOfInterestGenerator extends BaseGenerator {
 				nodeB) : String.format("%s---%s", nodeB, nodeA);
 	}
 
-	public static enum Parameter {
+	public enum Parameter {
 		INITIAL_PEOPLE_COUNT, ADD_PEOPLE_PROBABILITY, DEL_PEOPLE_PROBABILITY, INITIAL_POINT_OF_INTEREST_COUNT, AVERAGE_POINTS_OF_INTEREST_COUNT, ADD_POINT_OF_INTEREST_PROBABILITY, DEL_POINT_OF_INTEREST_PROBABILITY, HAVE_INTEREST_PROBABILITY, LOST_INTEREST_PROBABILITY, LINKS_NEEDED_TO_CREATE_EDGE, LINK_PROBABILITY
 	}
 
@@ -375,8 +375,8 @@ public class PointsOfInterestGenerator extends BaseGenerator {
 		averagePointsOfInterestCount = 3;
 		linksNeededToCreateEdge = 2;
 
-		addicts = new LinkedList<Addict>();
-		pointsOfInterest = new LinkedList<PointOfInterest>();
+		addicts = new LinkedList<>();
+		pointsOfInterest = new LinkedList<>();
 
 		currentStep = 0;
 	}
@@ -483,7 +483,7 @@ public class PointsOfInterestGenerator extends BaseGenerator {
 	protected void removePointOfInterest(PointOfInterest poi) {
 		pointsOfInterest.remove(poi);
 
-		poi.addict.forEach(a -> poi.delAddict(a));
+		poi.addict.forEach(poi::delAddict);
 	}
 
 	protected void removeRandomPointOfInterest() {
@@ -498,7 +498,7 @@ public class PointsOfInterestGenerator extends BaseGenerator {
 	}
 
 	protected void killAddict(Addict a) {
-		while (a.pointsOfInterest.size() > 0)
+		while (!a.pointsOfInterest.isEmpty())
 			a.pointsOfInterest.peek().delAddict(a);
 
 		a.fullUnlink();

@@ -188,7 +188,7 @@ public class PageRank implements DynamicAlgorithm, ElementSink {
 
 	/**
 	 * Creates a new instance.
-	 * 
+	 * <p>
 	 * The damping factor, the precision and the rank attribute are set to their
 	 * default values
 	 */
@@ -279,7 +279,7 @@ public class PageRank implements DynamicAlgorithm, ElementSink {
 
 	/**
 	 * Sets the rank attribute.
-	 * 
+	 * <p>
 	 * The computed ranks of each node are stored as values of this attribute.
 	 * 
 	 * @param rankAttribute
@@ -298,7 +298,7 @@ public class PageRank implements DynamicAlgorithm, ElementSink {
 
 	/**
 	 * Switches on or off the verbose mode.
-	 * 
+	 * <p>
 	 * In verbose mode the algorithm prints at each iteration the number of
 	 * iterations and the L1 norm of the difference between the current and the
 	 * previous rank vectors.
@@ -320,7 +320,7 @@ public class PageRank implements DynamicAlgorithm, ElementSink {
 		
 		graph.nodes().forEach(node -> node.setAttribute(rankAttribute, initialRank));
 		
-		newRanks = new ArrayList<Double>(graph.getNodeCount());
+		newRanks = new ArrayList<>(graph.getNodeCount());
 		upToDate = false;
 		iterationCount = 0;
 	}
@@ -437,7 +437,7 @@ public class PageRank implements DynamicAlgorithm, ElementSink {
 
 	/**
 	 * Returns the total number of iterations.
-	 * 
+	 * <p>
 	 * This number accumulates the number of iterations performed by each call
 	 * to {@link #compute()}. It is reset to zero in the calls to
 	 * {@link #init(Graph)}.

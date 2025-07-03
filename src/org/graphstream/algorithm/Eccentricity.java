@@ -224,7 +224,7 @@ public class Eccentricity implements Algorithm {
 	 */
 	public void compute() {
 		DoubleAccumulator min = new DoubleAccumulator((x, y) -> y, Double.MAX_VALUE);
-		HashSet<Node> eccentricity = new HashSet<Node>();
+		HashSet<Node> eccentricity = new HashSet<>();
 		
 		graph.nodes().forEach(node -> {
 			DoubleAccumulator m = new DoubleAccumulator((x, y) -> y, Double.MIN_VALUE); 
@@ -232,7 +232,7 @@ public class Eccentricity implements Algorithm {
 
 			if (info == null)
 				System.err
-						.printf("APSPInfo missing. Did you compute APSP before ?\n");
+						.print("APSPInfo missing. Did you compute APSP before ?\n");
 			
 			graph.nodes().forEach(other -> {
 				if (node != other) {
@@ -240,7 +240,7 @@ public class Eccentricity implements Algorithm {
 
 					if (d < 0)
 						System.err
-								.printf("Found a negative length value in eccentricity algorithm. "
+								.print("Found a negative length value in eccentricity algorithm. "
 										+ "Is graph connected ?\n");
 					else if (d > m.get())
 						m.accumulate(d);

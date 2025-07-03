@@ -418,7 +418,7 @@ public class APSP extends SinkAdapter implements Algorithm {
 			// the node to all its neighbour. It set the distance to 1 if there
 			// are no weights on edges.
 
-			ArrayList<Node> nodeList = new ArrayList<Node>();
+			ArrayList<Node> nodeList = new ArrayList<>();
 
 			graph.nodes().forEach(node -> {
 				node.setAttribute(APSPInfo.ATTRIBUTE_NAME, new APSPInfo(node,
@@ -428,17 +428,17 @@ public class APSP extends SinkAdapter implements Algorithm {
 			// The Floyd-Warshall algorithm. You can easily see it is in O(n^3)..
 
 			// int z = 0;
-			DoubleAccumulator prog = new DoubleAccumulator((x, y) -> x + y, 0);
+			DoubleAccumulator prog = new DoubleAccumulator(Double::sum, 0);
 			final double MAX  = nodeList.size() * nodeList.size();
 			
 			nodeList.stream().forEach(k -> {
 				nodeList.stream().forEach(i -> {
 					nodeList.stream().forEach(j -> {
-						APSPInfo I = (APSPInfo) i.getAttribute(
+						APSPInfo I = i.getAttribute(
 								APSPInfo.ATTRIBUTE_NAME, APSPInfo.class);
-						APSPInfo J = (APSPInfo) j.getAttribute(
+						APSPInfo J = j.getAttribute(
 								APSPInfo.ATTRIBUTE_NAME, APSPInfo.class);
-						APSPInfo K = (APSPInfo) k.getAttribute(
+						APSPInfo K = k.getAttribute(
 								APSPInfo.ATTRIBUTE_NAME, APSPInfo.class);
 
 						double Dij = I.getLengthTo(J.source.getId());
@@ -504,7 +504,7 @@ public class APSP extends SinkAdapter implements Algorithm {
 		/**
 		 * Shortest paths toward all other accessible nodes.
 		 */
-		public HashMap<String, TargetPath> targets = new HashMap<String, TargetPath>();
+		public HashMap<String, TargetPath> targets = new HashMap<>();
 
 		/**
 		 * Create the new information and put in it all the paths between this
@@ -614,7 +614,7 @@ public class APSP extends SinkAdapter implements Algorithm {
 
 			if (tpath != null) {
 				Path path = new Path(); // XXX use the Path object directly.
-				ArrayList<Node> nodePath = new ArrayList<Node>();
+				ArrayList<Node> nodePath = new ArrayList<>();
 
 				nodePath.add(source);
 				nodePath.add(tpath.target);

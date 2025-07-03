@@ -190,19 +190,19 @@ public class BarabasiAlbertGenerator extends BaseGenerator {
 		addNode("0");
 		addNode("1");
 		addEdge("0_1", "0", "1");
-		degrees = new ArrayList<Integer>();
+		degrees = new ArrayList<>();
 		degrees.add(1);
 		degrees.add(1);
 		sumDeg = 2;
-		connected = new HashSet<Integer>();
+		connected = new HashSet<>();
 	}
 
 	/**
 	 * Step of the generator. Add a node and try to connect it with some others.
-	 * 
+	 * <p>
 	 * The number of links is randomly chosen between 1 and the maximum number
 	 * of links per step specified in {@link #setMaxLinksPerStep(int)}.
-	 * 
+	 * <p>
 	 * The complexity of this method is O(n) with n the number of nodes if the
 	 * number of edges created per new node is 1, else it is O(nm) with m the
 	 * number of edges generated per node.

@@ -29,7 +29,7 @@
  */
 package org.graphstream.algorithm.flow.test;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -70,7 +70,7 @@ public abstract class TestFlowAlgorithm {
 			flowAlgo.compute();
 
 			maximumFlow = flowAlgo.getMaximumFlow();
-			assertTrue(maximumFlow == g.getNumber("expected maximum flow"));
+            assertEquals(maximumFlow, g.getNumber("expected maximum flow"), 0.0);
 		}
 	}
 }

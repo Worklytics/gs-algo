@@ -34,7 +34,7 @@ import java.util.HashSet;
 
 /**
  * Build a graph using a lcf notation.
- * 
+ * <p>
  * Source : <a href="http://en.wikipedia.org/wiki/LCF_notation">Wikipedia</a>
  * 
  */
@@ -60,7 +60,7 @@ public class LCFGenerator extends BaseGenerator {
 	}
 
 	private int n;
-	private int initialRingSize;
+	private final int initialRingSize;
 	private HashSet<String> crossed;
 	protected LCF lcf;
 	protected boolean canBeExtended;
@@ -78,7 +78,7 @@ public class LCFGenerator extends BaseGenerator {
 	 */
 	public LCFGenerator(LCF lcf, int initialRingSize, boolean canBeExtended) {
 		this.lcf = lcf;
-		this.crossed = new HashSet<String>();
+		this.crossed = new HashSet<>();
 		this.initialRingSize = initialRingSize;
 		this.canBeExtended = canBeExtended;
 	}
@@ -134,7 +134,7 @@ public class LCFGenerator extends BaseGenerator {
 	protected void makeLCF() {
 		int i = 0;
 		int r = 0;
-		HashSet<String> added = new HashSet<String>();
+		HashSet<String> added = new HashSet<>();
 
 		while (r < lcf.repeat && i < n) {
 			for (int k = 0; k < lcf.steps.length && i < n; k++) {
@@ -157,7 +157,7 @@ public class LCFGenerator extends BaseGenerator {
 
 		crossed.stream()
 			.filter(edge -> !added.contains(edge))
-			.forEach(edge -> delEdge(edge));
+			.forEach(this::delEdge);
 
 		crossed.clear();
 		crossed = added;

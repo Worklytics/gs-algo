@@ -44,7 +44,7 @@ import org.graphstream.ui.spriteManager.Sprite;
 import org.graphstream.ui.spriteManager.SpriteManager;
 
 public class DemoLayout {
-	public static void main(String args[]) throws ElementNotFoundException, IOException, GraphParseException {
+	public static void main(String[] args) throws ElementNotFoundException, IOException, GraphParseException {
 		//System.getProperties().put("gs.ui.layout", "org.graphstream.ui.layout.springbox.implementations.LinLog");
 		(new DemoLayout()).test();
 	}

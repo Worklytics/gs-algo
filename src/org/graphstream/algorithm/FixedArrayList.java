@@ -64,12 +64,12 @@ public class FixedArrayList<E>
 	/**
 	 * List of elements.
 	 */
-	protected ArrayList<E> elements = new ArrayList<E>();
+	protected ArrayList<E> elements = new ArrayList<>();
 
 	/**
 	 * List of free indices.
 	 */
-	protected ArrayList<Integer> freeIndices = new ArrayList<Integer>();
+	protected ArrayList<Integer> freeIndices = new ArrayList<>();
 
 	/**
 	 * Last inserted element index.
@@ -79,13 +79,13 @@ public class FixedArrayList<E>
 // Construction
 
 	public FixedArrayList() {
-		elements = new ArrayList<E>();
-		freeIndices = new ArrayList<Integer>(16);
+		elements = new ArrayList<>();
+		freeIndices = new ArrayList<>(16);
 	}
 
 	public FixedArrayList(int capacity) {
-		elements = new ArrayList<E>(capacity);
-		freeIndices = new ArrayList<Integer>(16);
+		elements = new ArrayList<>(capacity);
+		freeIndices = new ArrayList<>(16);
 	}
 
 // Access
@@ -234,14 +234,12 @@ public class FixedArrayList<E>
 		int n = size();
 		int m = elements.size();
 		int j = 0;
-		Object a[] = new Object[n];
+		Object[] a = new Object[n];
 
-		for(int i=0; i<m; ++i) {
-			E e = elements.get(i);
-
-			if(e != null)
-				a[j++] = e;
-		}
+        for (E e : elements) {
+            if (e != null)
+                a[j++] = e;
+        }
 
 		assert(j == n);
 		return a;
@@ -293,14 +291,14 @@ public class FixedArrayList<E>
 	
 	/**
 	 * This operation set the i-th cell with the given value.
-	 * 
+	 * <p>
 	 * This works only
 	 * if the cell is empty, or if i is larger or equal to the size of the
 	 * array (if larger, empty cells are added to fill the gap, and free
 	 * indices will be used by the add() method).
-	 * 
+	 * <p>
 	 * If the cell is not empty, the return value is false.
-	 * 
+	 * <p>
 	 * This method is a convenience method, and its complexity is not O(1)
 	 * like the add() and remove() methods. At worse the complexity is O(n).
 	 * It is optimized so that when adding the element whose id is the one

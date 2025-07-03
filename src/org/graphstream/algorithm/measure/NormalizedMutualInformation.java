@@ -112,18 +112,19 @@ public class NormalizedMutualInformation extends CommunityRelativeMeasure {
 			for (int i = 0; i < N_A.length; i++) {
 				for (int j = 0; j < N_B.length; j++) {
 					if (N[i][j] > 0) {
-						num += -2.0 * N[i][j]
-								* Math.log((N[i][j] * n) / (N_A[i] * N_B[j]));
+						num += (float) (-2.0 * N[i][j] * Math.log((N[i][j] * n) / (N_A[i] * N_B[j])));
 					}
 				}
 			}
 
 			// Then the denominator
 			float denom = 0;
-			for (int i = 0; i < N_A.length; i++)
-				denom += N_A[i] * Math.log(N_A[i] / n);
-			for (int j = 0; j < N_B.length; j++)
-				denom += N_B[j] * Math.log(N_B[j] / n);
+            for (int k : N_A) {
+				denom += (float) (k * Math.log(k / n));
+			}
+            for (int i : N_B) {
+                denom += (float) (i * Math.log(i / n));
+            }
 
 			// Update the metric value
 			M = num / denom;
@@ -152,8 +153,8 @@ public class NormalizedMutualInformation extends CommunityRelativeMeasure {
 		int[][] N = new int[c_A][];
 
 		// Relation between confusion matrix indices and communities
-		Object keys_A[] = new Object[c_A];
-		Object keys_B[] = new Object[c_B];
+		Object[] keys_A = new Object[c_A];
+		Object[] keys_B = new Object[c_B];
 
 		int k_A = 0;
 		for (Object key : referenceCommunities.keySet())

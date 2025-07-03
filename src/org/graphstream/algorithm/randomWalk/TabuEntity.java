@@ -53,7 +53,7 @@ public class TabuEntity extends Entity {
 	/**
 	 * The edges weights of the current node.
 	 */
-	protected double weights[];
+	protected double[] weights;
 
 	/**
 	 * Start the entity on the given node.
@@ -91,11 +91,11 @@ public class TabuEntity extends Entity {
 	 */
 	protected void tabuStep() {
 		int n = current.getOutDegree();
-		ArrayList<Edge> edges = new ArrayList<Edge>();
+		ArrayList<Edge> edges = new ArrayList<>();
 		
 		current.leavingEdges()
 			.filter(e -> !tabu(e.getOpposite(current)))
-			.forEach(e -> edges.add(e));
+			.forEach(edges::add);
 
 		n = edges.size();
 
@@ -186,7 +186,7 @@ public class TabuEntity extends Entity {
 
 		if (context.entityMemory > 0) {
 			if (memory == null)
-				memory = new LinkedList<Node>();
+				memory = new LinkedList<>();
 
 			int n = memory.size();
 

@@ -38,6 +38,7 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLConnection;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.concurrent.locks.ReentrantLock;
@@ -56,11 +57,11 @@ import org.graphstream.graph.Node;
  */
 public class URLGenerator extends BaseGenerator {
 
-	public static enum Mode {
+	public enum Mode {
 		HOST, PATH, FULL
 	}
 
-	private static String REGEX = "href=\"([^\"]*)\"";
+	private static final String REGEX = "href=\"([^\"]*)\"";
 
 	protected HashSet<String> urls;
 	protected LinkedList<String> stepUrls;
@@ -77,12 +78,12 @@ public class URLGenerator extends BaseGenerator {
 	protected final ReentrantLock lock;
 
 	public URLGenerator(String... startFrom) {
-		urls = new HashSet<String>();
-		stepUrls = new LinkedList<String>();
-		newUrls = new HashSet<String>();
+		urls = new HashSet<>();
+		stepUrls = new LinkedList<>();
+		newUrls = new HashSet<>();
 		hrefPattern = Pattern.compile(REGEX);
 		mode = Mode.HOST;
-		filters = new LinkedList<URLFilter>();
+		filters = new LinkedList<>();
 		directed = false;
 		step = 0;
 		printProgress = false;
@@ -95,9 +96,7 @@ public class URLGenerator extends BaseGenerator {
 		setUseInternalGraph(true);
 
 		if (startFrom != null) {
-			for (int i = 0; i < startFrom.length; i++) {
-				stepUrls.add(startFrom[i]);
-			}
+            stepUrls.addAll(Arrays.asList(startFrom));
 		}
 	}
 
@@ -151,7 +150,7 @@ public class URLGenerator extends BaseGenerator {
 		stepUrls.addAll(newUrls);
 		step++;
 		
-		return newUrls.size() > 0;
+		return !newUrls.isEmpty();
 	}
 
 	/**
@@ -241,14 +240,7 @@ public class URLGenerator extends BaseGenerator {
 	 * @param regex regex used to filter url
 	 */
 	public void acceptOnlyMatchingURL(final String regex) {
-		URLFilter f = new URLFilter() {
-			public boolean accept(String url) {
-				if (url.matches(regex))
-					return true;
-
-				return false;
-			}
-		};
+		URLFilter f = url -> url.matches(regex);
 
 		filters.add(f);
 	}
@@ -259,14 +251,7 @@ public class URLGenerator extends BaseGenerator {
 	 * @param regex regex used to filter url
 	 */
 	public void declineMatchingURL(final String regex) {
-		URLFilter f = new URLFilter() {
-			public boolean accept(String url) {
-				if (!url.matches(regex))
-					return true;
-
-				return false;
-			}
-		};
+		URLFilter f = url -> !url.matches(regex);
 
 		filters.add(f);
 	}
@@ -298,8 +283,8 @@ public class URLGenerator extends BaseGenerator {
 		int t = Math.min(threads, stepUrls.size());
 		int byThreads = stepUrls.size() / t;
 
-		LinkedList<Worker> workers = new LinkedList<Worker>();
-		LinkedList<Thread> workersThreads = new LinkedList<Thread>();
+		LinkedList<Worker> workers = new LinkedList<>();
+		LinkedList<Thread> workersThreads = new LinkedList<>();
 
 		for (int i = 0; i < t; i++) {
 			int start = i * byThreads;
@@ -348,7 +333,7 @@ public class URLGenerator extends BaseGenerator {
 		URLConnection conn;
 		InputStream stream;
 		BufferedReader reader;
-		HashSet<String> localUrls = new HashSet<String>();
+		HashSet<String> localUrls = new HashSet<>();
 
 		if (!isValid(url))
 			return;
@@ -392,7 +377,7 @@ public class URLGenerator extends BaseGenerator {
 			while (m.find()) {
 				String href = m.group(1);
 
-				if (href == null || href.length() == 0)
+				if (href == null || href.isEmpty())
 					continue;
 
 				href = href.trim();
@@ -453,20 +438,14 @@ public class URLGenerator extends BaseGenerator {
 		String nodeId = url;
 		URI uri = new URI(url);
 
-		switch (mode) {
-		case HOST:
-			nodeId = String.format("%s://%s", uri.getScheme(), uri.getHost());
-			break;
-		case PATH:
-			nodeId = String.format("%s://%s%s", uri.getScheme(), uri.getHost(),
-					uri.getPath());
-			break;
-		case FULL:
-			nodeId = String.format("%s://%s%s%s", uri.getScheme(), uri
-					.getHost(), uri.getPath(), uri.getQuery() == null ? ""
-					: uri.getQuery());
-			break;
-		}
+        nodeId = switch (mode) {
+            case HOST -> String.format("%s://%s", uri.getScheme(), uri.getHost());
+            case PATH -> String.format("%s://%s%s", uri.getScheme(), uri.getHost(),
+                    uri.getPath());
+            case FULL -> String.format("%s://%s%s%s", uri.getScheme(), uri
+                    .getHost(), uri.getPath(), uri.getQuery() == null ? ""
+                    : uri.getQuery());
+        };
 
 		return nodeId;
 	}
@@ -577,7 +556,7 @@ public class URLGenerator extends BaseGenerator {
 	/**
 	 * Defines url filter.
 	 */
-	public static interface URLFilter {
+	public interface URLFilter {
 		/**
 		 * Called by the generator to know if the specified url can be accepted
 		 * by this filter. If a filter return false, then the url is discarded.

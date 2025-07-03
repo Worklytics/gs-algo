@@ -99,7 +99,7 @@ public class DisjointSets<E> {
 	 * Creates a new instance containing no sets and no elements
 	 */
 	public DisjointSets() {
-		map = new HashMap<E, Node>();
+		map = new HashMap<>();
 	}
 
 	/**
@@ -113,7 +113,7 @@ public class DisjointSets<E> {
 	 *            if this capacity is exceeded.
 	 */
 	public DisjointSets(int initialCapacity) {
-		map = new HashMap<E, Node>(4 * initialCapacity / 3 + 1);
+		map = new HashMap<>(4 * initialCapacity / 3 + 1);
 	}
 
 	/**

@@ -145,7 +145,7 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 	 * Pricing strategy used at each iteration of the algorithm. Only two simple
 	 * strategies are implemented for the moment, more are to come.
 	 */
-	public static enum PricingStrategy {
+	public enum PricingStrategy {
 		/**
 		 * When using this strategy an iteration is faster, but the number of
 		 * iterations is generally bigger
@@ -162,7 +162,7 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 	/**
 	 * The status of the current solution.
 	 */
-	public static enum SolutionStatus {
+	public enum SolutionStatus {
 		/**
 		 * The current solution is outdated. This is the value when the graph
 		 * has changed since the last call of {@link NetworkSimplex#compute()}
@@ -355,19 +355,19 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 	 * {@link #nodes} and {@link #arcs}.
 	 */
 	protected void cloneGraph() {
-		nodes = new HashMap<String, NSNode>(4 * graph.getNodeCount() / 3 + 2);
+		nodes = new HashMap<>(4 * graph.getNodeCount() / 3 + 2);
 		for (Node node : graph) {
 			NSNode copy = new NSNode(node);
 			nodes.put(copy.id, copy);
 		}
 
-		DoubleAccumulator arcCount = new DoubleAccumulator((x, y) -> x + y, graph.getEdgeCount()) ;
+		DoubleAccumulator arcCount = new DoubleAccumulator(Double::sum, graph.getEdgeCount()) ;
 		
 		graph.edges()
 			.filter(edge -> !edge.isDirected())
 			.forEach(edge -> arcCount.accumulate(1));
 
-		arcs = new HashMap<String, NSArc>(4 * (int)arcCount.get() / 3 + 1);
+		arcs = new HashMap<>(4 * (int) arcCount.get() / 3 + 1);
 		
 		graph.edges().forEach(edge -> {
 			NSArc copy = new NSArc(edge, true);
@@ -383,7 +383,7 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 	 * Creates artificial root and arcs and sets up the initial BFS
 	 */
 	protected void createInitialBFS() {
-		nonBasicArcs = new HashSet<NSArc>(4 * arcs.size() / 3 + 1);
+		nonBasicArcs = new HashSet<>(4 * arcs.size() / 3 + 1);
 		
 		arcs.values().forEach(arc -> {
 			arc.flow = 0;
@@ -405,7 +405,7 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 
 		objectiveValue.set(0);
 
-		nodes.values().forEach(node -> node.createArtificialArc());
+		nodes.values().forEach(NSNode::createArtificialArc);
 		solutionStatus = SolutionStatus.UNDEFINED;
 	}
 
@@ -422,8 +422,7 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 			arc.computeReducedCost(reducedCost);
 			if (reducedCost.isNegative()) {
 				enteringArc = arc;
-				return;
-			}
+            }
 		});
 		
 		// Skip the artificial arcs if the objective value is finite
@@ -436,8 +435,7 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 				arc.computeReducedCost(reducedCost);
 				if (reducedCost.isNegative()) {
 					enteringArc = arc;
-					return;
-				}
+                }
 			}
 		});
 	}
@@ -755,7 +753,7 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 
 	/**
 	 * Sets the log frequency.
-	 * 
+	 * <p>
 	 * If the parameter is positive, outputs information about the algorithm
 	 * execution to the log stream.
 	 * 
@@ -769,7 +767,7 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 
 	/**
 	 * Sets the log stream.
-	 * 
+	 * <p>
 	 * Note that the algorithm outputs information about its execution only if
 	 * the log frequency is positive. By default the log stream is
 	 * {@link System#err}.
@@ -784,7 +782,7 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 
 	/**
 	 * Returns the sum of the supplies of all the nodes in the network.
-	 * 
+	 * <p>
 	 * The MCF problem has solution only if the problem is balanced, i.e. if the
 	 * total supply is equal to the total demand. This method returns the
 	 * missing supply (if negative) or demand (if positive) in order to make the
@@ -821,7 +819,7 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 
 	/**
 	 * Returns the infeasibility of the current solution.
-	 * 
+	 * <p>
 	 * This is the sum of the absolute values of the infeasibilities of all the
 	 * nodes. If the returned value is zero, the current solution is feasible,
 	 * i.e. it satisfies the supply constraints of all the nodes.
@@ -835,7 +833,7 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 
 	/**
 	 * Returns the infeasibility of a node.
-	 * 
+	 * <p>
 	 * Returns the amount of missing outflow (if positive) or inflow (if
 	 * negative) of a given node. If the value is zero, the current solution
 	 * satisfies the node demand / supply.
@@ -851,7 +849,7 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 
 	/**
 	 * Returns the edge to the parent of a node in the current BFS tree.
-	 * 
+	 * <p>
 	 * If the parent of the node is the artificial root, this method returns
 	 * {@code null}. When the returned edge is undirected, use
 	 * {@link #getStatus(Edge, boolean)} to know which of the both arcs is
@@ -870,7 +868,7 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 
 	/**
 	 * Returns the parent of a node in the current BFS tree.
-	 * 
+	 * <p>
 	 * If the parent of the node is the artificial root, returns {@code null}.
 	 * 
 	 * @param node
@@ -886,7 +884,7 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 
 	/**
 	 * Returns the flow on an edge.
-	 * 
+	 * <p>
 	 * If {@code sameDirection} is true, returns the flow from the source to the
 	 * target of the edge, otherwise returns the flow from the target to the
 	 * source of the edge. Note that for directed edges the flow can only pass
@@ -909,7 +907,7 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 
 	/**
 	 * Returns the flow on an edge from its source node to its target node.
-	 * 
+	 * <p>
 	 * The same as {@code getFlow(Edge, true)}.
 	 * 
 	 * @param edge
@@ -923,7 +921,7 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 
 	/**
 	 * Returns the status of an edge in the current solution.
-	 * 
+	 * <p>
 	 * An edge can be basic, non-basic at zero or non-basic at upper bound. Note
 	 * that undirected edges are interpreted as two directed arcs. If
 	 * {@code sameDirection} is true, the method returns the status of the arc
@@ -948,7 +946,7 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 
 	/**
 	 * Returns the status of an edge in the current solution.
-	 * 
+	 * <p>
 	 * The same as {@code getStatus(edge, true)}.
 	 * 
 	 * @param edge
@@ -1473,7 +1471,7 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 	/**
 	 * Arc status
 	 */
-	public static enum ArcStatus {
+	public enum ArcStatus {
 		/**
 		 * Basic arc
 		 */
@@ -1485,8 +1483,8 @@ public class NetworkSimplex extends SinkAdapter implements DynamicAlgorithm {
 		/**
 		 * Non basic saturated arc
 		 */
-		NONBASIC_UPPER;
-	}
+		NONBASIC_UPPER
+    }
 
 	/**
 	 * Internal representation of the graph arcs. Stores the arc ids,

@@ -46,7 +46,7 @@ public class TestBetweenessCentrality {
 	/**
 	 * Quick manual test of the centrality algorithm.
 	 */
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		Graph graph = new SingleGraph("Betweeness Centrality");
 
 		BetweennessCentrality bcb = new BetweennessCentrality();

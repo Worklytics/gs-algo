@@ -83,7 +83,7 @@ public class LobsterGenerator extends BaseGenerator {
 	public LobsterGenerator(int maxDistance, int maxDegree) {
 		this.maxDistance = maxDistance;
 		this.maxDegree = maxDegree;
-		this.nodes = new LinkedList<Data>();
+		this.nodes = new LinkedList<>();
 	}
 
 	/**
@@ -194,7 +194,7 @@ public class LobsterGenerator extends BaseGenerator {
 		Data(String id, int distance, boolean path) {
 			this.id = id;
 			this.distance = distance;
-			this.connected = new LinkedList<Data>();
+			this.connected = new LinkedList<>();
 			this.path = path;
 		}
 

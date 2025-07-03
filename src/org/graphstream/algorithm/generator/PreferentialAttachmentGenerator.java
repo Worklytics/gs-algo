@@ -89,7 +89,7 @@ public class PreferentialAttachmentGenerator extends BaseGenerator {
 	 * @see org.graphstream.algorithm.generator.Generator#begin()
 	 */
 	public void begin() {
-		this.degrees = new ArrayList<Integer>();
+		this.degrees = new ArrayList<>();
 		this.degreeMax = 0;
 
 		addNode("0");
@@ -98,7 +98,7 @@ public class PreferentialAttachmentGenerator extends BaseGenerator {
 
 	/**
 	 * Step of the generator. Add a node and try to connect it with some others.
-	 * 
+	 * <p>
 	 * The complexity of this method is O(n) with n the number of nodes actually
 	 * in the graph.
 	 * 

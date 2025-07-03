@@ -31,13 +31,6 @@
  */
 package org.graphstream.ui.layout;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedList;
-
 import org.graphstream.algorithm.Prim;
 import org.graphstream.algorithm.SpanningTree;
 import org.graphstream.algorithm.generator.BarabasiAlbertGenerator;
@@ -49,9 +42,15 @@ import org.graphstream.stream.PipeBase;
 import org.graphstream.ui.geom.Point3;
 import org.graphstream.ui.view.Viewer;
 
+import java.io.IOException;
+import java.io.Serial;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+
 public class HierarchicalLayout extends PipeBase implements Layout {
 
-	public static enum Rendering {
+	public enum Rendering {
 		VERTICAL, HORIZONTAL, DISK
 	}
 
@@ -83,13 +82,10 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 
 	int nodeMoved;
 
-	double distanceBetweenLevels = 1;
-	double levelWidth = 1, levelHeight = 1;
-
 	public HierarchicalLayout() {
-		roots = new LinkedList<String>();
+		roots = new LinkedList<>();
 		// listeners = new LinkedList<LayoutListener>();
-		nodesPosition = new HashMap<String, Position>();
+		nodesPosition = new HashMap<>();
 		internalGraph = new AdjacencyListGraph("hierarchical_layout-intern");
 		hi = new Point3();
 		lo = new Point3();
@@ -100,8 +96,7 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 		roots.clear();
 
 		if (rootsId != null) {
-			for (String id : rootsId)
-				roots.add(id);
+            roots.addAll(Arrays.asList(rootsId));
 		}
 	}
 
@@ -132,18 +127,17 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 
 		final int[] columns = new int[internalGraph.getNodeCount()];
 
-		LinkedList<Node> roots = new LinkedList<Node>(), roots2 = new LinkedList<Node>();
+		LinkedList<Node> roots = new LinkedList<>(), roots2 = new LinkedList<>();
 
-		if (this.roots.size() > 0) {
-			for (int i = 0; i < this.roots.size(); i++)
-				roots.add(internalGraph.getNode(this.roots.get(i)));
+		if (!this.roots.isEmpty()) {
+            for (String root : this.roots) roots.add(internalGraph.getNode(root));
 		}
 
 		SpanningTree tree = new Prim("weight", "inTree");
 		tree.init(internalGraph);
 		tree.compute();
 
-		if (roots.size() == 0) {
+		if (roots.isEmpty()) {
 			int max = internalGraph.getNode(0).getDegree();
 			int maxIndex = 0;
 
@@ -158,7 +152,7 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 
 		Box rootBox = new Box();
 		LevelBox rootLevelBox = new LevelBox(0);
-		LinkedList<LevelBox> levelBoxes = new LinkedList<LevelBox>();
+		LinkedList<LevelBox> levelBoxes = new LinkedList<>();
 
 		rootLevelBox.add(rootBox);
 		levelBoxes.add(rootLevelBox);
@@ -171,7 +165,7 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 		}
 
 		do {
-			while (roots.size() > 0) {
+			while (!roots.isEmpty()) {
 				Node root = roots.poll();
 				int level = levels[root.getIndex()] + 1;
 				Box box = getChildrenBox(root);
@@ -193,9 +187,9 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 
 			roots.addAll(roots2);
 			roots2.clear();
-		} while (roots.size() > 0);
+		} while (!roots.isEmpty());
 
-		FibonacciHeap<Integer, Box> boxes = new FibonacciHeap<Integer, Box>();
+		FibonacciHeap<Integer, Box> boxes = new FibonacciHeap<>();
 		boxes.add(0, rootBox);
 
 		for (int i = 0; i < internalGraph.getNodeCount(); i++) {
@@ -211,10 +205,9 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 			}
 		}
 
-		for (int i = 0; i < levelBoxes.size(); i++)
-			levelBoxes.get(i).sort();
+        for (LevelBox levelBox : levelBoxes) levelBox.sort();
 
-		while (boxes.size() > 0)
+		while (!boxes.isEmpty())
 			renderBox(boxes.extractMin());
 
 		hi.x = hi.y = Double.MIN_VALUE;
@@ -254,17 +247,15 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 	}
 
 	protected static Box getBox(Node node) {
-		Box box = (Box) node.getAttribute("box");
-		return box;
+        return (Box) node.getAttribute("box");
 	}
 
 	protected static Box getChildrenBox(Node node) {
-		Box box = (Box) node.getAttribute("children");
-		return box;
+        return (Box) node.getAttribute("children");
 	}
 
 	protected void renderBox(Box box) {
-		if (box.size() == 0)
+		if (box.isEmpty())
 			return;
 
 		for (int i = 0; i < box.size(); i++) {
@@ -289,17 +280,16 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 		if (box.parent != null) {
 			Box parentBox = getBox(box.parent);
 
-			switch (renderingType) {
-			case VERTICAL:
-				sx = 1 / (double) parentBox.size();
-				sy = 1 / Math.pow(2, box.level);
-				break;
-			case DISK:
-			case HORIZONTAL:
-				sx = 1 / Math.pow(2, box.level);
-				sy = 1 / (double) parentBox.size();
-				break;
-			}
+            sy = switch (renderingType) {
+                case VERTICAL -> {
+                    sx = 1 / (double) parentBox.size();
+                    yield 1 / Math.pow(2, box.level);
+                }
+                case DISK, HORIZONTAL -> {
+                    sx = 1 / Math.pow(2, box.level);
+                    yield 1 / (double) parentBox.size();
+                }
+            };
 		}
 
 		box.scale(sx, sy);
@@ -579,7 +569,8 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 		structureChanged = true;
 	}
 
-	static class Box extends LinkedList<Node> {
+	public static class Box extends LinkedList<Node> {
+		@Serial
 		private static final long serialVersionUID = -1929536876444346726L;
 
 		Node parent;
@@ -606,21 +597,22 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 			width *= sx;
 			height *= sy;
 
-			for (int i = 0; i < size(); i++) {
-				get(i).setAttribute("x", sx * get(i).getNumber("x"));
-				get(i).setAttribute("y", sy * get(i).getNumber("y"));
-			}
+            for (Node edges : this) {
+                edges.setAttribute("x", sx * edges.getNumber("x"));
+                edges.setAttribute("y", sy * edges.getNumber("y"));
+            }
 		}
 
 		void translate(double dx, double dy) {
-			for (int i = 0; i < size(); i++) {
-				get(i).setAttribute("x", dx + get(i).getNumber("x"));
-				get(i).setAttribute("y", dy + get(i).getNumber("y"));
-			}
+            for (Node edges : this) {
+                edges.setAttribute("x", dx + edges.getNumber("x"));
+                edges.setAttribute("y", dy + edges.getNumber("y"));
+            }
 		}
 	}
 
 	static class LevelBox extends LinkedList<Box> {
+		@Serial
 		private static final long serialVersionUID = -5818919480025868466L;
 
 		int level;
@@ -631,19 +623,17 @@ public class HierarchicalLayout extends PipeBase implements Layout {
 
 		void sort() {
 			if (level > 0) {
-				Collections.sort(this, new Comparator<Box>() {
-					public int compare(Box b0, Box b1) {
-						Box pb0 = getBox(b0.parent);
-						Box pb1 = getBox(b1.parent);
+				this.sort((b0, b1) -> {
+                    Box pb0 = getBox(b0.parent);
+                    Box pb1 = getBox(b1.parent);
 
-						if (pb0.order < pb1.order)
-							return -1;
-						else if (pb0.order > pb1.order)
-							return 1;
+                    if (pb0.order < pb1.order)
+                        return -1;
+                    else if (pb0.order > pb1.order)
+                        return 1;
 
-						return 0;
-					}
-				});
+                    return 0;
+                });
 			}
 
 			for (int i = 0; i < size(); i++)

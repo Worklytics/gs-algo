@@ -92,8 +92,8 @@ public class EpidemicCommunityAlgorithm extends DecentralizedCommunityAlgorithm 
 		Object maxCommunity = null;
 		Double maxScore = Double.NEGATIVE_INFINITY;
 
-		TreeMap<Object, Double> scores = new TreeMap<Object, Double>(
-				communityScores);
+		TreeMap<Object, Double> scores = new TreeMap<>(
+                communityScores);
 		for (Object c : scores.keySet()) {
 			Double s = communityScores.get(c);
 

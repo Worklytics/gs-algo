@@ -55,9 +55,9 @@ import org.graphstream.graph.Node;
  * The following example generates a graph with the Dorogovtsev-Mendes generator
  * and then compute a spanning-tree using the Prim algorithm. The generator
  * creates random weights for edges that will be used by the Prim algorithm.
- * 
+ * <p>
  * If no weight is present, algorithm considers that all weights are set to 1.
- * 
+ * <p>
  * When an edge is in the spanning tree, the algorithm will set its "ui.class"
  * attribute to "intree", else the attribute is set to "notintree". According to
  * the css stylesheet that is defined, spanning will be displayed with thick
@@ -167,13 +167,13 @@ public class Prim extends Kruskal {
 	@Override
 	protected void makeTree() {
 		if (treeEdges == null)
-			treeEdges = new LinkedList<Edge>();
+			treeEdges = new LinkedList<>();
 		else
 			treeEdges.clear();
 
 		int n = graph.getNodeCount();
 		Data[] data = new Data[n];
-		FibonacciHeap<Double, Node> heap = new FibonacciHeap<Double, Node>();
+		FibonacciHeap<Double, Node> heap = new FibonacciHeap<>();
 		for (int i = 0; i < n; i++) {
 			data[i] = new Data();
 			data[i].edgeToTree = null;

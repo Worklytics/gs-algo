@@ -36,7 +36,7 @@ package org.graphstream.algorithm;
  * composed of an initialization step followed by several computation steps. A
  * last step, specific to dynamic algorithms, marks the termination of the
  * algorithm and has to be used to close the computation.
- * 
+ * <p>
  * The following example computes the amount of apparitions of each node and the
  * average value of apparitions for nodes :
  * 

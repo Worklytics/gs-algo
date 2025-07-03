@@ -187,7 +187,7 @@ public class CommunityDistribution extends CommunityMeasure {
 	/**
 	 * Updates the distribution information and returns a string for an easy
 	 * display of the results.
-	 * 
+	 * <p>
 	 * The string has the following format: [number of communities] [average
 	 * size] [stdev size] [min size] ([smallest community]) [max size] ([biggest
 	 * community])

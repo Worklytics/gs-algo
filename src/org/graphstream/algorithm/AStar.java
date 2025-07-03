@@ -36,6 +36,7 @@ import static org.graphstream.ui.graphicGraph.GraphPosLengthUtils.edgeLength;
 import static org.graphstream.ui.graphicGraph.GraphPosLengthUtils.nodePosition;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 
 import org.graphstream.algorithm.util.Parameter;
@@ -193,12 +194,12 @@ public class AStar implements Algorithm {
 	/**
 	 * The open set.
 	 */
-	protected HashMap<Node, AStarNode> open = new HashMap<Node, AStarNode>();
+	protected HashMap<Node, AStarNode> open = new HashMap<>();
 
 	/**
 	 * The closed set.
 	 */
-	protected HashMap<Node, AStarNode> closed = new HashMap<Node, AStarNode>();
+	protected HashMap<Node, AStarNode> closed = new HashMap<>();
 
 	/**
 	 * If found the shortest path is stored here.
@@ -350,7 +351,7 @@ public class AStar implements Algorithm {
 	public Path buildPath(AStarNode target) {
 		Path path = new Path();
 
-		ArrayList<AStarNode> thePath = new ArrayList<AStarNode>();
+		ArrayList<AStarNode> thePath = new ArrayList<>();
 		AStarNode node = target;
 
 		while (node != null) {
@@ -480,8 +481,8 @@ public class AStar implements Algorithm {
 		AStarNode theChosenOne = null;
 		
 		theChosenOne = open.values().stream()
-				.min((n,m) -> Double.compare(n.rank, m.rank))
-				.get();
+				.min(Comparator.comparingDouble(n -> n.rank))
+				.orElse(null);
 		
 		return theChosenOne;
 	}
@@ -603,8 +604,8 @@ public class AStar implements Algorithm {
 	 */
 	public static class DistanceCosts implements AStar.Costs {
 		public double heuristic(Node node, Node target) {
-			double xy1[] = nodePosition(node);
-			double xy2[] = nodePosition(target);
+			double[] xy1 = nodePosition(node);
+			double[] xy2 = nodePosition(target);
 
 			double x = xy2[0] - xy1[0];
 			double y = xy2[1] - xy1[1];

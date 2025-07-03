@@ -32,11 +32,12 @@ package org.graphstream.algorithm.measure;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serial;
 
 import javax.swing.JFrame;
 
 import org.jfree.chart.ChartPanel;
-import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 
@@ -48,7 +49,7 @@ public abstract class ChartMeasure {
 	/**
 	 * Type of plot.s
 	 */
-	public static enum PlotType {
+	public enum PlotType {
 		/**
 		 * Points connected with lines.
 		 */
@@ -70,7 +71,7 @@ public abstract class ChartMeasure {
 	/**
 	 * Defines the support used for rendering : on screen or in a file.
 	 */
-	public static enum PlotOutputType {
+	public enum PlotOutputType {
 		SCREEN, PNG, JPEG
 	}
 
@@ -78,6 +79,7 @@ public abstract class ChartMeasure {
 	 * Exception that can be raised when trying to plot measures.
 	 */
 	public static class PlotException extends Exception {
+		@Serial
 		private static final long serialVersionUID = -1158885472939044996L;
 
 		public PlotException(String message) {
@@ -264,7 +266,7 @@ public abstract class ChartMeasure {
 			break;
 		case JPEG:
 			try {
-				ChartUtilities.saveChartAsJPEG(new File(params.path), chart,
+				ChartUtils.saveChartAsJPEG(new File(params.path), chart,
 						params.width, params.height);
 			} catch (IOException e) {
 				throw new PlotException(e);
@@ -273,7 +275,7 @@ public abstract class ChartMeasure {
 			break;
 		case PNG:
 			try {
-				ChartUtilities.saveChartAsPNG(new File(params.path), chart,
+				ChartUtils.saveChartAsPNG(new File(params.path), chart,
 						params.width, params.height);
 			} catch (IOException e) {
 				throw new PlotException(e);

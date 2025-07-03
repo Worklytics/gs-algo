@@ -111,7 +111,7 @@ public class FlowerSnarkGenerator extends BaseGenerator {
 		addEdge(N.A, i, N.D, i);
 	}
 
-	protected static enum N {
+	protected enum N {
 		A, B, C, D
 	}
 

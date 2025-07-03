@@ -29,12 +29,15 @@
  */
 package org.graphstream.algorithm;
 
+import java.io.Serial;
+
 /**
  * A parameter is missing during the processing. This exception is thrown when a
  * parameter marked as non-optional is not set during the initialization
  * process.
  */
 public class MissingParameterException extends Exception {
+	@Serial
 	private static final long serialVersionUID = -3406263218480949750L;
 
 	public MissingParameterException() {

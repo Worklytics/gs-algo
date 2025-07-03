@@ -195,8 +195,8 @@ public class RandomGenerator extends BaseGenerator {
 	 */
 	public void begin() {
 		if (allowRemove)
-			edgeIds = new ArrayList<String>();
-		subset = new HashSet<Integer>();
+			edgeIds = new ArrayList<>();
+		subset = new HashSet<>();
 		for (nodeCount = 0; nodeCount <= (int) averageDegree; nodeCount++)
 			addNode(nodeCount + "");
 		for (int i = 0; i < nodeCount; i++)

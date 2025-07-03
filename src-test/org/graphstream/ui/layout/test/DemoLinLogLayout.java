@@ -87,7 +87,7 @@ public class DemoLinLogLayout {
 	
 	protected Modularity modularity;
 	
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		new DemoLinLogLayout();
 	}
 
@@ -167,7 +167,7 @@ public class DemoLinLogLayout {
 	protected void findCommunities(double threshold) {
 		int nedges = graph.getEdgeCount();
 		double avgDist = 0;
-		double edgesDists[] = new double[nedges];
+		double[] edgesDists = new double[nedges];
 		for(int i=0; i<nedges; i++) {
 			Edge edge = graph.getEdge(i);
 			Point3 posFrom = GraphPosLengthUtils.nodePointPosition(edge.getNode0());

@@ -30,7 +30,7 @@
 package org.graphstream.algorithm.measure;
 
 public class DegreeCentrality extends AbstractCentrality {
-	public static enum Mode {
+	public enum Mode {
 		INOUT, IN, OUT
 	}
 

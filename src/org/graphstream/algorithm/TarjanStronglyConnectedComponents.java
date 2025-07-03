@@ -120,8 +120,8 @@ public class TarjanStronglyConnectedComponents implements Algorithm {
 	 * Build a new Tarjan algorithm.
 	 */
 	public TarjanStronglyConnectedComponents() {
-		this.data = new HashMap<Node, NodeData>();
-		this.S = new Stack<Node>();
+		this.data = new HashMap<>();
+		this.S = new Stack<>();
 		this.sccIndex = new IntegerIndexGenerator();
 		this.sccAttribute = "scc";
 	}
@@ -148,7 +148,7 @@ public class TarjanStronglyConnectedComponents implements Algorithm {
 		
 		graph.nodes()
 			.filter(v -> !data.containsKey(v))
-			.forEach(v -> strongConnect(v));
+			.forEach(this::strongConnect);
 		
 	}
 
@@ -238,7 +238,7 @@ public class TarjanStronglyConnectedComponents implements Algorithm {
 	/**
 	 * Defines objects able to generator index.
 	 */
-	public static interface IndexGenerator {
+	public interface IndexGenerator {
 		/**
 		 * Create a new index.
 		 * 
